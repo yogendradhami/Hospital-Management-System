@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Add - Doctor
+    Doctor - Add
 {% endblock %}
 
 {% block custom_css %}
@@ -10,6 +10,22 @@
 {% endblock %}
 
 {% block content %}
+<div class="container mt-5">
+    <h2>This is doctor add page list</h2>
+    <a href="{% url 'book-appointment' %}" class="btn btn-primary">BACK</a>
 
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="{% url 'doc-add' %}" method="post">
+                {% csrf_token %}
 
-{% end block %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary" value="CREATE">
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</div>
+{% endblock %}

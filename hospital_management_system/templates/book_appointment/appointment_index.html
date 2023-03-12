@@ -14,10 +14,11 @@
 
 
 <div class="container mt-5 mb-5">
-    <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-sm-between mb-3">
+        {% include "partials/_message.html" %}
 
         <span>Doctors</span>
-        <a href="" class="btn btn-success add">Add Doctors</a>
+        <a href="{% url 'doc-add' %}" class="btn btn-success add">Add Doctors</a>
         <a href="" class="btn btn-success add">Edit Doctors</a>
         <a href="" class="btn btn-success add">Delete Doctors</a>
         
@@ -296,6 +297,49 @@
             </div>
             
         </div>
+
+
+
+
+
+
+        <div class="col-md-3">
+
+            <div class="card p-2 py-3 text-center">
+
+                <div class="img mb-2">
+
+                    <img src="https://i.imgur.com/HFpxxJz.jpg" width="70" class="rounded-circle">
+                    
+                </div>
+                    {% for val in data %}
+                <h5 class="mb-0">{{val.name}}</h5>
+                <small>{{ val.specialization }}</small>
+                        {%endfor%}
+                <div class="ratings mt-2">
+
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    
+                </div>
+
+                <div class="mt-4 apointment">
+
+                    <button class="btn btn-success text-uppercase">Book Appointment</button>
+                    
+                </div>
+
+            </div>
+            
+        </div>
+
+        
+
+
+
+
 
         
     </div>

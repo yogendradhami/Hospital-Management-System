@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User
-from .models import AddMedicine
-from .froms import AddMedicineCreateForm
+from .models import AddMedicine,AddDoctor
+from .forms import AddMedicineCreateForm, AddDoctorCreateForm
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -26,6 +28,17 @@ def BookAppointment(request):
     return render(request, 'book_appointment/appointment_index.html')
 
 
+def AddDoctor(request):
+    doc_create_form = AddDoctorCreateForm()
+    context = {'form':doc_create_form}
 
+    if request.method == 'POST':
+        doc = AddDoctor()
+        doc.name = request.POST.get('name')
+        doc.specialization = request.POST.get('specialization')
+        doc.save()
 
+        messages.success(request, 'Doctor Added Successfully!!')
 
+        return redirect('book-appointment')
+    return render(request,'book_appointment/add_doctor.html', context)
