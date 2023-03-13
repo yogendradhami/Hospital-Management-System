@@ -42,3 +42,9 @@ def AddDoctor(request):
 
         return redirect('book-appointment')
     return render(request,'book_appointment/add_doctor.html', context)
+
+def MakeOrder(request):
+    return render(request, 'book_appointment/order.html')
+
+def BookAppointment(request):
+    return render(request, 'book_appointment/book_appointment.html')
