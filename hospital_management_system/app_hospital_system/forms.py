@@ -1,5 +1,5 @@
 from django import forms
-from .models import AddMedicine, AddDoctor
+from .models import AddMedicine, AddDoctor,BookAppointment
 
 class AddMedicineCreateForm(forms.ModelForm):
     class Meta:
@@ -10,3 +10,8 @@ class AddDoctorCreateForm(forms.ModelForm):
     class Meta:
         fields = "__all__"
         model = AddDoctor
+
+class BookAppointmentCreateForm(forms.ModelForm):
+    class Meta:
+        fields = '__all__'
+        model = BookAppointment
