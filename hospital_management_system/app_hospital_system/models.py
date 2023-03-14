@@ -51,3 +51,13 @@ class BookAppointment(models.Model):
 
     def __str__(self):
         return self.full_name
+
+# model for contactus
+class Contactus(models.Model):
+    name = models.CharField(max_length=100)
+    email =models.EmailField()
+    subject= models.CharField(max_length=500)
+    message = models.CharField(max_length=500)
+    
+    def __str__(self):
+        return self.name

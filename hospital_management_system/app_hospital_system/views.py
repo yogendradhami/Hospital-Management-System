@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus
 from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm
 from django.contrib import messages
+import datetime
 
 
 
@@ -53,7 +54,7 @@ def BookAppointment(request):
     context= {"data":data, "department":department, "doctor":doctor}
 
     if request.method == 'POST':
-        book_app = BookAppointment()
+        book_app= BookAppointment()
         doctor = Doctor.objects.get(id=request.POST.get('doctor'))
         department = Department.objects.get(id=request.POST.get('department'))
         book_app.full_name = request.post.get('full_name')
@@ -74,4 +75,28 @@ def BookAppointment(request):
 
 
 def ContactUs(request):
-    return render(request, 'book_appointment/contactus.html')
+    context= {
+        'Title':'Our Contact',
+        'Location':'kathmandu',
+        'Email':'hosital@org.com',
+        'Call':'+01-02561455'
+    }
+    if request.method == 'POST':
+       
+        name = request.POST['name']
+        email= request.POST['email']
+        subject = request.POST['message']
+        message = request.POST['message']
+        con= Contactus(name= name,email=email,subject=subject,message=message)
+        con.save()
+
+        messages.success(request, "You're request has been sent ")
+        return  redirect('contact-us')
+    return render(request, 'book_appointment/contactus.html', context)
+
+
+# def today(request):
+#     """Shows todays current time and date."""
+#     today = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
+#     context = {'today': today}
+#     return render(request, 'component/footer.html', context)

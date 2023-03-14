@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -143,7 +144,7 @@ a:focus{
 .footer .footer-newsletter{
     margin-bottom: 35px;
     max-width: 700px;
-    text-align: center;
+    
     color: #999999;
 }
 .footer .footer-newsletter input{
@@ -152,9 +153,9 @@ a:focus{
     border-radius: rgba(255, 256, 256, 0.15);
     margin-bottom: 15px;
 }
-.footer .footer-newsletter .btn{
+.footer .footer-newsletter .row .btn{
 display: block;
-width: 100%;
+width: 65%;
 height: 35px;
 font-size: 14px;
 font-weight: 400;
@@ -165,6 +166,7 @@ border-radius: 5px;
 border: none;
 transition: .3s;
 }
+
 .footer .footer-newsletter .btn:hover{
     color:#0085ff;
     background: #ffffff;
@@ -251,11 +253,7 @@ color: #0085ff;
                         <p><i class="uil uil-map-marker"></i>Mahendranagar, Nepal</p>
                         <p><i class="uil uil-phone-alt"></i>+9779865645488</p>
                         <p><i class="uil uil-envelope"></i>yogendradhami6@gmail.com</p>
-                        <p><i class="uil uil-clock"></i><?php
-                                                        // Return current date from the remote server
-                                                        $date = date('d-m-y h:i:s');
-                                                        echo $date;
-                                                        ?></p>
+                        <p><i class="uil uil-clock"></i>{% now "jS F Y, H:i A" %}</p>
                     </div>
                 </div>
 
@@ -274,30 +272,34 @@ color: #0085ff;
                 <div class="col-md-6 col-lg-3">
                     <div class="footer-project">
                         <h3>latest projects</h3>
-                        <a href=""> <img src="img/4.jpg" alt="image"> </a>
-                        <a href=""> <img src="img/5.jpg" alt="image"> </a>
-                        <a href=""> <img src="img/6.jpg" alt="image"> </a>
-                        <a href=""> <img src="img/7.jpg" alt="image"> </a>
-                        <a href=""> <img src="img/5.jpg" alt="image"> </a>
-                        <a href=""> <img src="img/5.jpg" alt="image"> </a>
+                        <a href=""> <img src="{% static 'img/footer/gallery-1.jpg '%}" alt="image"> </a>
+                        <a href=""> <img src="{% static 'img/footer/gallery-2.jpg '%}" alt="image"> </a>
+                        <a href=""> <img src="{% static 'img/footer/gallery-3.jpg '%}" alt="image"> </a>
+                        <a href=""> <img src="{% static 'img/footer/gallery-4.jpg '%}" alt="image"> </a>
+                        <a href=""> <img src="{% static 'img/footer/gallery-5.jpg '%}" alt="image"> </a>
+                        <a href=""> <img src="{% static 'img/footer/gallery-6.jpg '%}" alt="image"> </a>
                     </div>
                 </div>
 
             </div>
         </div>
         <div class="container footer-newsletter">
-            <p>I'm  sure that   you will  enjoy the project...</p>
-            <div class="row form">
+            <p>I'm  sure that you will  enjoy the project...</p>
+            <form action="" method="post">
+                {% csrf_token %}
+            <div class="row ">
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" placeholder="Your Name">
+                    <input type="text" class="form-control" placeholder="Your Name" name="name">
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" placeholder="Your Email">
+                    <input type="text" class="form-control" placeholder="Your Email" name="email">
                 </div>
                 <div class="coll-sm-4">
-                    <button class="btn">Subscribe</button>
+                    <button class="btn" type="submit"><i class="fa fa-home mx-2"></i>Subscribe</button>
+                    
                 </div>
             </div>
+        </form>
         </div>
         <div class="copyright">
             <div class="container">
