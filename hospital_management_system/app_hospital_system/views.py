@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer
 from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm
 from django.contrib import messages
 import datetime
+from django.views import View
+# from django.views.generic.edit import FormView
 
 
 
@@ -30,47 +32,23 @@ def AppointmentIndex(request):
 
 
 def AddDoctor(request):
-    doc_create_form = AddDoctorCreateForm()
-    context = {'form':doc_create_form}
+    return render(request,'book_appointment/add_doctor.html')
 
-    if request.method == 'POST':
-        doc = AddDoctor()
-        doc.name = request.POST.get('name')
-        doc.specialization = request.POST.get('specialization')
-        doc.save()
+# class AddDoctorFormView(FormView):
+#     template_name ='add_doctor.html'
+#     form_class = AddDoctorCreateForm
+#     success_url = '/thanks/'
+    
+#     def form_valid(self, form):
+#         form.send_email()
+#         return super().form_valid(form)
 
-        messages.success(request, 'Doctor Added Successfully!!')
-
-        return redirect('book-appointment')
-    return render(request,'book_appointment/add_doctor.html', context)
 
 def MakeOrder(request):
     return render(request, 'book_appointment/order.html')
 
 def BookAppointment(request):
-    data= BookAppointment.objects.get()
-    department = Department.objects.all()
-    doctor= Doctor.objects.all()
-    context= {"data":data, "department":department, "doctor":doctor}
-
-    if request.method == 'POST':
-        book_app= BookAppointment()
-        doctor = Doctor.objects.get(id=request.POST.get('doctor'))
-        department = Department.objects.get(id=request.POST.get('department'))
-        book_app.full_name = request.post.get('full_name')
-        book_app.contact=request.POST.get('contact')
-        book_app.email=request.POST.get('email')
-        book_app.appointment_date=request.POST.get('appointment_date')
-        book_app.message=request.POST.get('message')
-        book_app.doctor= doctor
-        book_app.department = department
-        book_app.save()
-        
-        messages.success(request, "You're appointment has been booked with Dr.{{ doctor_name }}")
-        return  redirect('book-appointment')
-
-
-    return render(request, 'book_appointment/book_appointment.html',context)
+    return render(request, 'book_appointment/book_appointment.html')
 
 
 
@@ -85,14 +63,33 @@ def ContactUs(request):
        
         name = request.POST['name']
         email= request.POST['email']
-        subject = request.POST['message']
+        subject=request.POST['subject']
         message = request.POST['message']
         con= Contactus(name= name,email=email,subject=subject,message=message)
         con.save()
 
         messages.success(request, "You're request has been sent ")
-        return  redirect('contact-us')
+        return redirect('contact-us')
     return render(request, 'book_appointment/contactus.html', context)
+
+
+class FooterPage(View):
+    def get(self,request):
+        return render(request, 'component/footer.html')
+    
+
+    def post(self, request):
+
+        if request.method== 'POST':
+            name= request.POST['name']
+            email = request.POST['email']
+            context= Footer(name= name, email=email)
+            context.save()
+
+            messages.success(request, "You're sucscribed")
+            return redirect('footer')
+    
+    
 
 
 # def today(request):

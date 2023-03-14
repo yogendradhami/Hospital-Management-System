@@ -1,4 +1,4 @@
-{% extends 'layouts/master.html' %}
+{% extends 'layouts/main.html' %}
 {% load static %}
 
 {% block title %}
@@ -21,6 +21,7 @@
                 {% csrf_token %}
 
                 {{ form.as_p }}
+                
                 <input type="submit" class="btn btn-primary" value="CREATE">
             </form>
         </div>

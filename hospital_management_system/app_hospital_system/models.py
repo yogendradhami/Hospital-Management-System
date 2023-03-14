@@ -61,3 +61,11 @@ class Contactus(models.Model):
     
     def __str__(self):
         return self.name
+    
+# model for footer subscription
+class Footer(models.Model):
+    name=models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
