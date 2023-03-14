@@ -32,7 +32,22 @@ def AppointmentIndex(request):
 
 
 def AddDoctor(request):
-    return render(request,'book_appointment/add_doctor.html')
+    doc_create_form = AddDoctorCreateForm()
+    context={"form": doc_create_form}
+
+    if request.method == "POST":
+        doc=AddDoctor()
+        doc.name= request.POST.get('name')
+        doc.specialization= request.POST.get('specialization')
+        
+    
+       
+        doc.save()
+
+        messages.success(request, 'Docotr added successfully')
+
+
+    return render(request,'book_appointment/add_doctor.html',context)
 
 # class AddDoctorFormView(FormView):
 #     template_name ='add_doctor.html'
