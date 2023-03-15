@@ -12,5 +12,9 @@ urlpatterns = [
     path('appointment-booking/', views.BookAppointment, name='appointment-booking'),
     path('contact-us/', views.ContactUs, name='contact-us'),
     path('footer/', FooterPage.as_view(),name='footer'),
+    path('staff-index/', views.StaffIndex, name='staff-index'),
+    path('add-staff/', views.StaffAdd, name='add-staff'),
+    path('drug-index/', views.DrugIndex, name='drug-index'),
+    path('add-drug/', views.DrugAdd,name='add-drug'),
 
 ]

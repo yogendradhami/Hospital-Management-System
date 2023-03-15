@@ -111,12 +111,16 @@ class FooterPage(View):
 
             messages.success(request, "You're sucscribed")
             return redirect('footer')
-    
-    
+        
 
+def StaffIndex(request):
+    return render(request, 'staff/index_staff.html')
 
-# def today(request):
-#     """Shows todays current time and date."""
-#     today = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
-#     context = {'today': today}
-#     return render(request, 'component/footer.html', context)
+def StaffAdd(request):
+    return render(request, 'staff/add_staff.html')
+
+def DrugIndex(request):
+    return render(request, 'drug/index_drug.html')
+
+def DrugAdd(request):
+    return render(request, 'drug/add_drug.html')
