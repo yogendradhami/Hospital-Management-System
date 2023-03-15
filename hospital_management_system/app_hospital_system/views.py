@@ -11,7 +11,6 @@ from django.views import View
 
 # Create your views here.
 
-
 def Home(request):
     return render(request, 'layouts/master.html')
 
@@ -36,15 +35,11 @@ def AddDoctor(request):
     context={"form": doc_create_form}
 
     if request.method == "POST":
-        doc=AddDoctor(
-            
-
-            
-        )
-        # department=  Department.objects.get(id=request.POST.get('department'))
+        doc=AddDoctor( )
+        department=  Department.objects.get(id=request.POST.get('department'))
         doc.name= request.POST.get('name')
         doc.specialization= request.POST.get('specialization')
-        # doc.department = department
+        doc.department = department
 
         doc.save()
 
@@ -60,6 +55,22 @@ def MakeOrder(request):
     return render(request, 'book_appointment/order.html')
 
 def BookAppointment(request):
+    if request.method=='POST':
+        book = BookAppointment()
+        department=  Department.objects.get(id=request.POST.get('department'))
+        select_doctor=  AddDoctor.objects.get(id=request.POST.get('select_doctor'))
+
+        book.name = request.POST.get('name')
+        book.email=request.POST.get('email')
+        book.number=request.POST.get('number')
+        book.appointment_date=request.POST.get('appointment_date')
+        book.department= department
+        book.select_doctor=select_doctor
+        book.message=request.POST.get('message')
+        book.save()
+    
+        messages.success(request, 'Appointment Booked successfully')
+    
     return render(request, 'book_appointment/book_appointment.html')
 
 

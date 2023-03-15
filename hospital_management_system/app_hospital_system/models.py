@@ -57,6 +57,7 @@ class BookAppointment(models.Model):
     email = models.EmailField()
     appointment_date =  models.DateField()
     department = models.ForeignKey(Department,on_delete=models.CASCADE)
+    select_doctor=models.ForeignKey(AddDoctor, on_delete=models.CASCADE)
     message = models.CharField(max_length=200)
 
     def __str__(self):
