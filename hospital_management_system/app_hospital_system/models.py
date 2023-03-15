@@ -23,20 +23,25 @@ class Department(models.Model):
         db_table = "app_department"
 
 class AddDoctor(models.Model):
-    name= models.CharField(max_length=100,default=None, null=True)
-    specializaion = models.CharField(max_length=200,default=None, null=True)
-    # department=models.ForeignKey(Department,on_delete=models.CASCADE)
+    name= models.CharField(max_length=100)
+    specializaion = models.CharField(max_length=200)
+    department=models.ForeignKey(Department,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
     
+    class Meta:
+        db_table = "app_adddoctor"
   
+  
+
 
 # Doctors model
 class Doctor(models.Model):
     doctor_name = models.CharField(max_length=255)
     short_name = models.CharField(max_length=255, null=True, blank=True)
     status = models.BooleanField(default=True)
+    message=models.CharField(max_length=100)
 
     def __str__(self):
         return self.doctor_name
@@ -56,7 +61,9 @@ class BookAppointment(models.Model):
 
     def __str__(self):
         return self.full_name
-    
+
+    class Meta:
+        db_table = "app_bookappointment"   
 
 
 # model for contactus
@@ -68,6 +75,9 @@ class Contactus(models.Model):
     
     def __str__(self):
         return self.name
+
+    class Meta:
+        db_table = "app_contactus"
     
 
 # model for footer subscription
@@ -77,5 +87,7 @@ class Footer(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        db_table = "app_footer"
     
    

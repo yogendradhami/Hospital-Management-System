@@ -36,27 +36,24 @@ def AddDoctor(request):
     context={"form": doc_create_form}
 
     if request.method == "POST":
-        doc=AddDoctor()
+        doc=AddDoctor(
+            
+
+            
+        )
+        # department=  Department.objects.get(id=request.POST.get('department'))
         doc.name= request.POST.get('name')
         doc.specialization= request.POST.get('specialization')
-        
-    
-       
+        # doc.department = department
+
         doc.save()
 
-        messages.success(request, 'Docotr added successfully')
+        messages.success(request, 'Docotor added successfully')
 
 
     return render(request,'book_appointment/add_doctor.html',context)
 
-# class AddDoctorFormView(FormView):
-#     template_name ='add_doctor.html'
-#     form_class = AddDoctorCreateForm
-#     success_url = '/thanks/'
-    
-#     def form_valid(self, form):
-#         form.send_email()
-#         return super().form_valid(form)
+
 
 
 def MakeOrder(request):

@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$fmn^p!xm(ll*_ak9#p0=ms6b(be%37vq53oobbhjiw+6bdg57'
+SECRET_KEY = 'django-insecure-t!sky78@)o6+av5i2khx_cxntf972yq9e$3ypn5$*+mjar6oq4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_hospital_system',
-    'authentication'
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +127,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
