@@ -17,4 +17,6 @@ urlpatterns = [
     path('drug-index/', views.Drug_Index, name='drug-index'),
     path('add-drug/', views.Drug_Add,name='add-drug'),
 
+    path('patient-index/', views.Patient_Index,name='patient-index'),
+
 ]

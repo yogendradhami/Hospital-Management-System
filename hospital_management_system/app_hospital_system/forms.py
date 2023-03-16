@@ -10,6 +10,7 @@ class AddDoctorCreateForm(forms.ModelForm):
     class Meta:
         fields = "__all__"
         model = AddDoctor
+        
 
 class BookAppointmentCreateForm(forms.ModelForm):
     class Meta:

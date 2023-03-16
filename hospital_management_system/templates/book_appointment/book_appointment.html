@@ -42,7 +42,7 @@
             <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" value="{{data.appointment_date}}" required>
           </div>
           <div class="col-md-4 form-group mt-3">
-            <label>Select Department</label>
+            <label >Select Department</label>
             <select name="department" id="department" class="form-select">
               {% for val in department %}
               <option value="{{ val.id}}">{{val.department_name}}</option>

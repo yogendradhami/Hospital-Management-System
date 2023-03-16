@@ -27,11 +27,13 @@ def Department_Index(request):
     return render(request, 'department/department_index.html')
 
 def Appointment_Index(request):
-    return render(request, 'book_appointment/appointment_index.html')
+    posts=AddDoctor.objects.all()
+    context={'posts':posts}
+    return render(request, 'book_appointment/appointment_index.html',context)
 
 
 def Add_Doctor(request):
-    doc_create_form = AddDoctorCreateForm()
+    doc_create_form =  AddDoctorCreateForm()
     context={"form": doc_create_form}
 
     if request.method == "POST":
@@ -40,15 +42,13 @@ def Add_Doctor(request):
         doc.name= request.POST.get('name')
         doc.specialization= request.POST.get('specialization')
         doc.department = department
+        doc.image= request.POST.get('image')
         doc.save()
 
         messages.success(request, 'Docotor added successfully')
-
+        return redirect('book-appointment')
 
     return render(request,'book_appointment/add_doctor.html',context)
-
-
-
 
 def Make_Order(request):
     return render(request, 'book_appointment/order.html')
@@ -148,3 +148,7 @@ def Drug_Add(request):
         messages.success(request, 'Drug added successfully in table')
         return redirect('drug-index')
     return render(request, 'drug/add_drug.html',context)
+
+
+def Patient_Index(request):
+    return render(request, 'staff/patient/index_patient.html')

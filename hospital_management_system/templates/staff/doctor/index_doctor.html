@@ -1,0 +1,36 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block title %}
+    Drug - List
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1> staff index section</h1>
+    <hr>
+    <a href="{% url 'add-staff' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add</a>
+    <hr>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <script src="">
+        let table = new DataTable('#myTable');
+    </script>
+
+{% endblock %}
