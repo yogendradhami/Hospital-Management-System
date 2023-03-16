@@ -12,6 +12,12 @@
 
 {% block content %}
 <div class="container mt-5">
+
+    {% include "partials/_message.html" %}
+
+</div>
+<div class="container mt-5">
+  
     <h1> staff index section</h1>
     <hr>
     <a href="{% url 'add-drug' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add</a>
@@ -30,17 +36,18 @@
           </tr>
         </thead>
         <tbody>
+          {% for val in data %}
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ val.name }} </td>
+            <td>{{ val.specification }} </td>
+            <td>{{ val.cost }}</td>
+            <td>{{ val.availability}}</td>
             <td><a href=""><i class="fa-solid fa-pencil"></i></a></td>
             <td><a href=""><i class="fa-solid fa-eye"></i></a></td>
             <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
           </tr>
-
+          {% endfor%}
         </tbody>
       </table>
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User
 from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug
-from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm
+from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm
 from django.contrib import messages
 import datetime
 from django.views import View
@@ -23,24 +23,23 @@ def logintem(request):
         add_medicine.save()
     return render(request, 'logintemp.html')
 
-def DepartmentIndex(request):
+def Department_Index(request):
     return render(request, 'department/department_index.html')
 
-def AppointmentIndex(request):
+def Appointment_Index(request):
     return render(request, 'book_appointment/appointment_index.html')
 
 
-def AddDoctor(request):
+def Add_Doctor(request):
     doc_create_form = AddDoctorCreateForm()
     context={"form": doc_create_form}
 
     if request.method == "POST":
-        doc=AddDoctor( )
+        doc=AddDoctor()
         department=  Department.objects.get(id=request.POST.get('department'))
         doc.name= request.POST.get('name')
         doc.specialization= request.POST.get('specialization')
         doc.department = department
-
         doc.save()
 
         messages.success(request, 'Docotor added successfully')
@@ -51,31 +50,39 @@ def AddDoctor(request):
 
 
 
-def MakeOrder(request):
+def Make_Order(request):
     return render(request, 'book_appointment/order.html')
 
-def BookAppointment(request):
+def Book_Appointment(request):
+
+    data = BookAppointment.objects.get()
+    department=Department.objects.all()
+    select_doctor= AddDoctor.objects.all()
+    context = {"data":data, "department":department,"addDoctor":select_doctor}
+
+
     if request.method=='POST':
         book = BookAppointment()
         department=  Department.objects.get(id=request.POST.get('department'))
         select_doctor=  AddDoctor.objects.get(id=request.POST.get('select_doctor'))
 
-        book.name = request.POST.get('name')
+        book.full_name = request.POST.get('full_name')
         book.email=request.POST.get('email')
-        book.number=request.POST.get('number')
+        book.contact=request.POST.get('contact')
         book.appointment_date=request.POST.get('appointment_date')
+        book.message=request.POST.get('message')
+
         book.department= department
         book.select_doctor=select_doctor
-        book.message=request.POST.get('message')
         book.save()
     
         messages.success(request, 'Appointment Booked successfully')
     
-    return render(request, 'book_appointment/book_appointment.html')
+    return render(request, 'book_appointment/book_appointment.html',context)
 
 
 
-def ContactUs(request):
+def Contact_Us(request):
     context= {
         'Title':'Our Contact',
         'Location':'kathmandu',
@@ -96,7 +103,7 @@ def ContactUs(request):
     return render(request, 'book_appointment/contactus.html', context)
 
 
-class FooterPage(View):
+class Footer_Page(View):
     def get(self,request):
         return render(request, 'component/footer.html')
     
@@ -113,17 +120,31 @@ class FooterPage(View):
             return redirect('footer')
         
 
-def StaffIndex(request):
-    drug_list= Drug.objects.all()
-    context ={'data':drug_list}
+def Staff_Index(request):
     
-    return render(request, 'staff/index_staff.html', context)
+    
+    return render(request, 'staff/index_staff.html', )
 
-def StaffAdd(request):
+def Staff_Add(request):
     return render(request, 'staff/add_staff.html')
 
-def DrugIndex(request):
-    return render(request, 'drug/index_drug.html')
+def Drug_Index(request):
+    drug_list= Drug.objects.all()
+    context ={'data':drug_list}
+    return render(request, 'drug/index_drug.html',context)
 
-def DrugAdd(request):
-    return render(request, 'drug/add_drug.html')
+def Drug_Add(request):
+    drug_create_form = DrugCreateForm()
+    context = {"form":drug_create_form}
+
+    if request.method == "POST":
+        drg = Drug()
+        drg.name = request.POST.get('name')
+        drg.specification= request.POST.get('specification')
+        drg.cost= request.POST.get('cost')
+        drg.availability= request.POST.get('availability')
+        drg.save()
+
+        messages.success(request, 'Drug added successfully in table')
+        return redirect('drug-index')
+    return render(request, 'drug/add_drug.html',context)

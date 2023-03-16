@@ -24,7 +24,7 @@ class Department(models.Model):
 
 class AddDoctor(models.Model):
     name= models.CharField(max_length=100)
-    specializaion = models.CharField(max_length=200)
+    specialization = models.CharField(max_length=200,null=True)
     department=models.ForeignKey(Department,on_delete=models.CASCADE)
 
     def __str__(self):
