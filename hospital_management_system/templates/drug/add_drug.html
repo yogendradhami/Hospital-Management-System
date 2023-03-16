@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-
+    Drug - Add
 {% endblock %}
 
 {% block custom_css %}
@@ -11,5 +11,23 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Drug index section</h1>
+<div class="container mt-5">
+
+    <h1> This is the drug add page list</h1>
+    <a href="{% url 'drug-index' %}" class="btn btn-primary">BACK</a>
+
+    <div class="row">
+
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="{% url 'add-drug' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="submit" class="btn btn-primary" value="CREATE">
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 {% endblock %}

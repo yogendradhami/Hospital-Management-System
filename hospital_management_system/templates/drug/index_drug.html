@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-
+    Drug - List
 {% endblock %}
 
 {% block custom_css %}
@@ -14,7 +14,7 @@
 <div class="container mt-5">
     <h1> staff index section</h1>
     <hr>
-    <a href="{% url 'add-staff' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add</a>
+    <a href="{% url 'add-drug' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add</a>
     <hr>
 
 
@@ -22,18 +22,20 @@
         <thead>
           <tr>
             <th scope="col">S.N</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Drug Name</th>
+            <th scope="col">Specification</th>
+            <th scope="col">Cost</th>
+            <th scope="col">availability</th>
             <th colspan="3">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td><a href=""><i class="fa-solid fa-pencil"></i></a></td>
             <td><a href=""><i class="fa-solid fa-eye"></i></a></td>
             <td><a href=""><i class="fa-solid fa-trash"></i></a></td>

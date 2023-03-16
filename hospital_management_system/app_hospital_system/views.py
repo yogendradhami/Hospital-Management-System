@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug
 from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm
 from django.contrib import messages
 import datetime
@@ -114,7 +114,10 @@ class FooterPage(View):
         
 
 def StaffIndex(request):
-    return render(request, 'staff/index_staff.html')
+    drug_list= Drug.objects.all()
+    context ={'data':drug_list}
+    
+    return render(request, 'staff/index_staff.html', context)
 
 def StaffAdd(request):
     return render(request, 'staff/add_staff.html')
