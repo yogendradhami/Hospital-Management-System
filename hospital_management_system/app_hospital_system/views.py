@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug
-from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient
+from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm
 from django.contrib import messages
 import datetime
 from django.views import View
@@ -149,9 +149,40 @@ def Drug_Add(request):
 
 
 def Patient_Index(request):
-    return render(request, 'staff/patient/index_patient.html')
+    patient_list = Patient.objects.all()
+    context={"data":patient_list}
+
+    return render(request, 'staff/patient/index_patient.html',context)
+
+def Patient_view(request):
+    data= Patient.objects.get()
+    context= {"data":data}
+    return render(request, 'staff/patient/view_patient.html',context)
+
+def Patient_Add(request):
+    patinet_create_form = patientCreateForm()
+    # data = Patient()
+    context= {"form":patinet_create_form}
 
 
+    if request.method == "POST":
+        pnt=Patient()
+        pnt.patient_name=request.POST.get('patient_name')
+        pnt.patient_contact=request.POST.get('patient_contact')
+        pnt.patient_address=request.POST.get('patient_address')
+        pnt.patients_doctor=request.POST.get('patients_doctor')
+        pnt.patient_admit_date=request.POST.get('patient_admit_date')
+        pnt.patient_release_date=request.POST.get('patient_release_date')
+        pnt.patient_days_spent=request.POST.get('patient_days_spent')
+        pnt.patient_age=request.POST.get('patient_age')
+        pnt.patient_last_visit=request.POST.get('patient_last_visit')
+        pnt.patient_status=request.POST.get('patient_status')
+        pnt.patient_disease_symptoms=request.POST.get('patient_disease_symptoms')
+        pnt.save()
+
+        messages.success(request, "Patient Added Successfully")
+        return redirect('patient-index')
+    return render(request, 'staff/patient/add_patient.html',context)
 
 def Index_pharmacy(request):
     return render(request, 'department/pharmacy_management_system/index_pharmacy.html')
@@ -160,13 +191,9 @@ def Index_Service(request):
     return render(request, 'department/services/index_service.html')
 
 def Doctor_index(request):
-    doc ={
-        'title':'Cardiology',
-        'full_name':'Dr. Rohit  Bist',
-        'address':'Kathmandu',
-        'contact':+9779865485514,
-        'gender':'Male',
-        'status':'On-Duty',
-        'specialization':'Cardio'
-    }
-    return render(request, 'staff/doctor/index_doctor.html',doc)
+   
+    posts = Doctor.objects.get()
+    context= {'posts':posts}
+
+
+    return render(request, 'staff/doctor/index_doctor.html',context)

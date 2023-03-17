@@ -3,22 +3,21 @@
 {% load static %}
 
 {% block title %}
-    Drug - List
+    Patient - List
 {% endblock %}
 
 {% block custom_css %}
-
 {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-    <h1> staff index section</h1>
+    <h1> Patient index section</h1>
     <hr>
-    <a href="{% url 'add-staff' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add</a>
+    <a href="{% url 'patient-add' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add</a>
     <hr>
 
 
-    <table class="table table-info table-striped-columns table-hover">
+    <!-- <table class="table table-info table-striped-columns table-hover">
         <thead>
           <tr>
             <th scope="col">S.N</th>
@@ -54,10 +53,126 @@
           </tr>
 
         </tbody>
+      </table> -->
+
+
+
+
+
+     
+      <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      #myInput {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+      }
+      
+      #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 18px;
+      }
+      
+      #myTable th, #myTable td {
+        text-align: left;
+        padding: 12px;
+      }
+      
+      #myTable tr {
+        border-bottom: 1px solid #ddd;
+      }
+      
+      #myTable tr.header, #myTable tr:hover {
+        background-color: #f1f1f1;
+      }
+      </style>
+     
+     <div class="container mt-5">
+
+      {% include "partials/_message.html" %}
+  
+  </div>
+      <h2>PATIENT'S</h2>
+      
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+      
+      <table id="myTable" class="table">
+        <thead>
+        <tr class="header">
+          <th scope="col">S.N</th>
+          <th scope="col">Patient Name</th>
+          <th scope="col">Patient Contact</th>
+          <th scope="col">Patient Address</th>
+          <th scope="col">Doctor Name</th>
+          <th scope="col">Admit Date</th>
+          <th scope="col">Release Date</th>
+          <th scope="col">Days Spent</th>
+          <th scope="col">Age</th>
+          <th scope="col">Disease & Symptoms</th>
+          <th scope="col">Status</th>
+          <th colspan="3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for val in data %}
+        <tr>
+
+          <td>{{forloop.counter}}</td>
+          <td> {{val.patient_name}} </td>
+          <td> {{val.patient_contact}} </td>
+          <td> {{val.patient_address}} </td>
+          <td> {{ val.patients_doctor }} </td>
+          <td> {{ val.patinet_admit_date }} </td>
+          <td> {{ val.patient_release_date }} </td>
+          <td> {{ val.patient_days_spent }} </td>
+          <td> {{ val.patient_age }}</td>
+          <td> {{ val.patient_disease_symptom }} </td>
+          <td> {{ val.patient_status }} </td>
+          
+          <td><a href=""><i class="fa-solid fa-pencil"></i>edit</a></td>
+          <td><a href="{% url 'patient-view'  %}"><i class="fa-solid fa-eye"></i>view</a></td>
+          <td><a href=""><i class="fa-solid fa-trash"></i>delete</a></td>
+        </tr>
+{% endfor%}
+      
+      </tbody>
       </table>
+      
+      <script>
+      function myFunction() {
+        var input, filter, table,thead, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
 
+  
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }       
+        }
+      }
+      </script>
+    
 
-
+      
     </div>
 
 {% endblock %}

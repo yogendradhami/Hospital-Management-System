@@ -37,12 +37,17 @@ class AddDoctor(models.Model):
   
 
 
-# Doctors model
+# Doctors model for doctor details
 class Doctor(models.Model):
+    title= models.CharField(max_length=200)
     doctor_name = models.CharField(max_length=255)
-    short_name = models.CharField(max_length=255, null=True, blank=True)
+    docotor_address=models.CharField(max_length=100)
+    doctor_number= models.CharField(max_length=50)
+    doctor_gender = models.CharField(max_length=50)
+    docotor_specialization= models.CharField(max_length=150)
+    # short_name = models.CharField(max_length=255, null=True, blank=True)
     status = models.BooleanField(default=True)
-    message=models.CharField(max_length=100)
+    message=models.TextField()
 
     def __str__(self):
         return self.doctor_name
@@ -103,4 +108,26 @@ class Drug(models.Model):
         return self.name
     class Meta:
         db_table = "app_drug"
-    
+
+
+# Patient model
+
+class Patient(models.Model):
+    patient_name = models.CharField(max_length=100)
+    patient_contact = models.CharField(max_length=100)
+    patient_address = models.CharField(max_length=100)
+    patients_doctor = models.CharField(max_length=100)
+    patient_admit_date = models.DateField()
+    patient_release_date= models.DateField()
+    patient_days_spent= models.CharField(max_length=199)
+
+    patient_age = models.CharField(max_length=100)
+    patient_last_visit =  models.CharField(max_length=100)
+    patient_status=  models.CharField(max_length=100)
+    patient_disease_symptoms= models.CharField(max_length=100)
+
+    def __str__(self):
+        return  self.patient_name
+    class Meta:
+        db_table = "app_patient"
+
