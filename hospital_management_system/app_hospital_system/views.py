@@ -50,8 +50,6 @@ def Add_Doctor(request):
 
     return render(request,'book_appointment/add_doctor.html',context)
 
-def Make_Order(request):
-    return render(request, 'book_appointment/order.html')
 
 def Book_Appointment(request):
 
@@ -152,3 +150,14 @@ def Drug_Add(request):
 
 def Patient_Index(request):
     return render(request, 'staff/patient/index_patient.html')
+
+
+
+def Index_pharmacy(request):
+    return render(request, 'department/pharmacy_management_system/index_pharmacy.html')
+
+def Index_Service(request):
+    return render(request, 'department/services/index_service.html')
+
+def Doctor_index(request):
+    return render(request, 'staff/doctor/index_doctor.html')

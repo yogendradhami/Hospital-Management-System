@@ -8,7 +8,7 @@ urlpatterns = [
     
     path('book-appointment/', views.Appointment_Index, name='book-appointment'),
     path('doctor/add/', views.Add_Doctor, name='doc-add'),
-    path('make-order/', views.Make_Order, name='make-order'),
+    
     path('appointment-booking/', views.Book_Appointment, name='appointment-booking'),
     path('contact-us/', views.Contact_Us, name='contact-us'),
     path('footer/', Footer_Page.as_view(),name='footer'),
@@ -18,5 +18,10 @@ urlpatterns = [
     path('add-drug/', views.Drug_Add,name='add-drug'),
 
     path('patient-index/', views.Patient_Index,name='patient-index'),
+
+    path('pharmacy-index/', views.Index_pharmacy, name='pharmacy-index'),
+    path('service-index/', views.Index_Service, name='service-index'),
+    path('doctor-index/',  views.Doctor_index, name='doctor-index'),
+    
 
 ]
