@@ -160,4 +160,13 @@ def Index_Service(request):
     return render(request, 'department/services/index_service.html')
 
 def Doctor_index(request):
-    return render(request, 'staff/doctor/index_doctor.html')
+    doc ={
+        'title':'Cardiology',
+        'full_name':'Dr. Rohit  Bist',
+        'address':'Kathmandu',
+        'contact':+9779865485514,
+        'gender':'Male',
+        'status':'On-Duty',
+        'specialization':'Cardio'
+    }
+    return render(request, 'staff/doctor/index_doctor.html',doc)

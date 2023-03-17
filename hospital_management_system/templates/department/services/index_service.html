@@ -7,122 +7,63 @@
 {% endblock %}
 
 {% block custom_css %}
+
 {% endblock %}
 
 
 {% block content %}
 
 
+<div class="card-columns mx-3 mt-5 mb-5">
+    <div class="card">
+      <img src="{% static 'img/gallery/gallery-3.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{% static 'img/gallery/gallery-1.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{% static 'img/gallery/gallery-2.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
 
-<div class="container">
-	<div class="row">
-		<h2>Sample Collection</h2>
-	</div>
-	
-
-	<table class="table table-striped table-bordered table-hover">
-			 <thead>
-                                    <tr>
-                                        <th style="text-align: center;">S/n</th>
-                                        <th style="text-align: center;"> Test availabe</th>
-                                        <th style="text-align: center;">Time</th>
-                                        <th style="text-align: center;">Cost</th>
-                                        <!-- <th style="text-align: center;">Email</th>
-                                        <th style="text-align: center;">Medicine Name</th>
-                                        <th style="text-align: center;">quantity</th> -->
-										  
-										 
-                                    </tr>
-                                    
-                                </thead>
-                                <!-- /.Row from DB-->
-                                <tbody>
-                                <td style="text-align: center;">1</td>
-                                <td style="text-align: center;"> Blood sample collection</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 100</td>
-                                </tbody>
-                                 <tbody>
-                                <td style="text-align: center;">2</td>
-                                <td style="text-align: center;"> Sugar Test</td>
-                                <td style="text-align: center;">Before Fasting</td>
-                                <td style="text-align: center;">Rs 200</td>
-                                </tbody>
-                                 <tbody>
-                                <td style="text-align: center;">3</td>
-                                <td style="text-align: center;"> Sugar Test</td>
-                                <td style="text-align: center;">After Fasting</td>
-                                <td style="text-align: center;">Rs 200</td>
-                                </tbody>
-                                 <tbody>
-                                <td style="text-align: center;">4</td>
-                                <td style="text-align: center;"> RLF</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 300</td>
-                                </tbody>
-                                 <tbody>
-                                <td style="text-align: center;">5</td>
-                                <td style="text-align: center;"> LFT</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 200</td>
-                                </tbody>
-                                 <tbody>
-                                <td style="text-align: center;">6</td>
-                                <td style="text-align: center;"> ECG Test</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 400</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">7</td>
-                                <td style="text-align: center;"> Stool Test</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 400</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">8</td>
-                                <td style="text-align: center;"> Cough Test</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 200</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">9</td>
-                                <td style="text-align: center;"> Inject Medicine</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 100</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">10</td>
-                                <td style="text-align: center;"> Urine Test</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 100</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">11</td>
-                                <td style="text-align: center;"> BP Checkup</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 50</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">12</td>
-                                <td style="text-align: center;"> Nurse </td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">charge per day (Rs 500)</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">13</td>
-                                <td style="text-align: center;"> Doctor Councelling</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 500</td>
-                                </tbody>
-                                <tbody>
-                                <td style="text-align: center;">14</td>
-                                <td style="text-align: center;"> Covid test</td>
-                                <td style="text-align: center;">As per the patient demand</td>
-                                <td style="text-align: center;">Rs 400</td>
-                                </tbody>
-	</table>
-</div>
-
-
+    <div class="card">
+        <img src="{% static 'img/gallery/gallery-3.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/gallery/gallery-1.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/gallery/gallery-2.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+  </div>
 
 {% endblock %}
