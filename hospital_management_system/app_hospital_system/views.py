@@ -60,9 +60,9 @@ def Book_Appointment(request):
 
 
     if request.method=='POST':
-        book = BookAppointment()
-        department=  Department.objects.get(id=request.POST.get('department'))
-        select_doctor=  AddDoctor.objects.get(id=request.POST.get('select_doctor'))
+        book = BookAppointment.objects.get()
+        department=  Department.objects.get(request.POST.get('department'))
+        select_doctor=  AddDoctor.objects.get(request.POST.get('select_doctor'))
 
         book.full_name = request.POST.get('full_name')
         book.email=request.POST.get('email')
@@ -154,8 +154,8 @@ def Patient_Index(request):
 
     return render(request, 'staff/patient/index_patient.html',context)
 
-def Patient_view(request):
-    data= Patient.objects.get()
+def Patient_view(request,id):
+    data= Patient.objects.get(id=id)
     context= {"data":data}
     return render(request, 'staff/patient/view_patient.html',context)
 
@@ -183,6 +183,37 @@ def Patient_Add(request):
         messages.success(request, "Patient Added Successfully")
         return redirect('patient-index')
     return render(request, 'staff/patient/add_patient.html',context)
+
+def Patient_delete(request,id):
+    data = Patient.objects.get(id=id)
+    data.delete()
+    messages.success(request,'Patient Details deleted successfully!!')
+    return redirect('patient-index')
+
+def Patient_edit(request,id):
+    data = Patient.objects.get(id=id)
+    context= {"data":data}
+    return render(request, 'staff/patient/edit_patient.html',context)
+
+def Patient_update(request):
+     if request.method == "POST":
+        pnt=Patient.objects.get(id=request.POST.get('id'))
+        pnt.patient_name=request.POST.get('patient_name')
+        pnt.patient_contact=request.POST.get('patient_contact')
+        pnt.patient_address=request.POST.get('patient_address')
+        pnt.patients_doctor=request.POST.get('patients_doctor')
+        pnt.patient_admit_date=request.POST.get('patient_admit_date')
+        pnt.patient_release_date=request.POST.get('patient_release_date')
+        pnt.patient_days_spent=request.POST.get('patient_days_spent')
+        pnt.patient_age=request.POST.get('patient_age')
+        pnt.patient_last_visit=request.POST.get('patient_last_visit')
+        pnt.patient_status=request.POST.get('patient_status')
+        pnt.patient_disease_symptoms=request.POST.get('patient_disease_symptoms')
+        pnt.save()
+
+        messages.success(request, "Patient Edited Successfully")
+        return redirect('patient-index')
+    
 
 def Index_pharmacy(request):
     return render(request, 'department/pharmacy_management_system/index_pharmacy.html')

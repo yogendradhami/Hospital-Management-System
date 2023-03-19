@@ -139,9 +139,9 @@
           <td> {{ val.patient_disease_symptom }} </td>
           <td> {{ val.patient_status }} </td>
           
-          <td><a href=""><i class="fa-solid fa-pencil"></i>edit</a></td>
-          <td><a href="{% url 'patient-view'  %}"><i class="fa-solid fa-eye"></i>view</a></td>
-          <td><a href=""><i class="fa-solid fa-trash"></i>delete</a></td>
+          <td><a href="{% url 'patient-edit' val.id %}"><i class="fa-solid fa-pencil"></i>edit</a></td>
+          <td><a href="{% url 'patient-view' val.id %}"><i class="fa-solid fa-eye"></i>view</a></td>
+          <td><a href="{% url 'patient-delete' val.id %}"><i class="fa-solid fa-trash"></i>delete</a></td>
         </tr>
 {% endfor%}
       

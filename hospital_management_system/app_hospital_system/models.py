@@ -124,7 +124,7 @@ class Patient(models.Model):
     patient_age = models.CharField(max_length=100)
     patient_last_visit =  models.CharField(max_length=100)
     patient_status=  models.CharField(max_length=100)
-    patient_disease_symptoms= models.CharField(max_length=100)
+    patient_disease_symptoms= models.CharField(max_length=100,null=True)
 
     def __str__(self):
         return  self.patient_name

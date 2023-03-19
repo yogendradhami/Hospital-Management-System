@@ -18,8 +18,12 @@ urlpatterns = [
     path('add-drug/', views.Drug_Add,name='add-drug'),
 
     path('patient-index/', views.Patient_Index,name='patient-index'),
-    path('patient-view/', views.Patient_view,name='patient-view'),
+    path('patient-view/<int:id>/', views.Patient_view,name='patient-view'),
     path('patient-add/', views.Patient_Add,name='patient-add'),
+    path('patient-delete/<int:id>/', views.Patient_delete,name='patient-delete'),
+    path('patient-edit/<int:id>/', views.Patient_edit,name='patient-edit'),
+    path('patient-update/', views.Patient_update,name='patient-update'),
+
 
     path('pharmacy-index/', views.Index_pharmacy, name='pharmacy-index'),
     path('service-index/', views.Index_Service, name='service-index'),
