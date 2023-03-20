@@ -45,6 +45,7 @@ urlpatterns = [
     # this is url for service page
     path('service-index/', views.Index_Service, name='service-index'),
 
-    
+    # this is url for search
+    path('search/', views.Search, name='search'),
 
 ]

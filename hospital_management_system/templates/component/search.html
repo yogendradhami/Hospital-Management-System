@@ -1,0 +1,64 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block title %}
+    Search Results
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-3">
+    <div class="container">
+        {% include "partials/_message.html" %}
+    </div>
+    <h2>Search Result:</h2>
+    {% if allPosts|length < 1 %}
+    <p>No search results</p>
+
+    Your search - 
+    <b> {{query}} </b><br>
+    - did not match any documents. <br><br>
+
+    Suggestions: <br><br>
+    <ul>
+        
+        <li> Make sure that all words are spelled correctly.</li>
+    <li>Try different keywords.</li>
+   
+        </li>
+<li>Try more general keywords.</li></ul>
+
+   
+</div>
+    
+    {% endif %}
+    {% for post in allPosts %}
+
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row ny-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">{{post.title}}</strong>
+            <h3 class="mb-0">{{post.doctor_name}}</h3>
+            <div class="mb-1 text-muted">{{post.doctor_address}}</div>
+            <p class="card-text mb-auto">  {{post.doctor_number}}</p>
+            <div class="my-2">
+                <p class="card-text mb-auto">{{post.doctor_gender}}</p>
+                <p class="card-text mb-auto">{{post.message}}</p>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+
+            </div>
+        </div>
+    </div>
+        
+        
+        
+      
+        
+        
+
+    {% endfor %}
+  
+
+{% endblock %}

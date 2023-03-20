@@ -91,9 +91,9 @@
           <td style="text-align: center">{{ forloop.counter }}</td>
           <td style="text-align: left">
             <b>Medicine:</b>{{val.name}} <br />
-            {%for val in dat %}
+            <!-- {%for val in dat %}
             <b>Generic:</b> {{val.generic_name}}<br />
-            {%endfor%}
+            {%endfor%} -->
             <b>Presentation:</b> {{val.tablet}}<br />
             <b>Volume:</b> Pcs <br />
           </td>
@@ -107,11 +107,7 @@
           <td style="text-align: center">{{val.availability}}</td>
           <td style="text-align: center"></td>
           <td style="text-align: center">
-            <a
-              style="margin: 5px"
-              title="Update"
-              href="http://localhost/pharmacy-management-ci/ShowForm/edit_purchase_info/10"
-            >
+            <a style="margin: 5px" title="Update" href="http://localhost/pharmacy-management-ci/ShowForm/edit_purchase_info/10">
               <span class="glyphicon glyphicon-edit"></span>
             </a>
             <a

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, HttpResponse
 # from django.contrib.auth.models import User
 from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy
 from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm
@@ -6,6 +6,7 @@ from django.contrib import messages
 import datetime
 from django.views import View
 # from django.views.generic.edit import FormView
+from app_hospital_system.models import Doctor
 
 
 
@@ -119,7 +120,7 @@ class Footer_Page(View):
             context= Footer(name= name, email=email)
             context.save()
 
-            messages.success(request, "You're sucscribed")
+            messages.success(request, "You're suscribed")
             return redirect('footer')
         
 
@@ -256,3 +257,16 @@ def Doctor_index(request):
 
 
     return render(request, 'staff/doctor/index_doctor.html',context)
+
+def Search(request):
+    query = request.GET['query']
+    if len(query)>80:
+        allPosts= [] # get.objects.none()
+    else:
+        allPostsTitle = Doctor.objects.filter(title__icontains=query)
+        allPostsDoctorName = Doctor.objects.filter(doctor_name__icontains=query)
+        allPosts= allPostsTitle.union(allPostsDoctorName)
+    if allPosts.count == 0:
+        messages.warning(request, "No search result found. Please refine your query.")
+    params = {'allPosts':allPosts, 'query':query}
+    return render(request, 'component/search.html',params)

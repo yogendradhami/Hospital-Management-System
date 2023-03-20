@@ -46,12 +46,12 @@
           <a class="nav-link " href="{% url 'service-index' %}" tabindex="-1" aria-disabled="true">Services</a>
         </li>
       </ul>
-        <form class="d-flex" method="post" action="{% url 'home' %}">
-          {% csrf_token %}
+        <form class="d-flex" method="get" action="{% url 'search' %}">
+          
           <div class="container h-100">
             <div class="d-flex justify-content-center h-100">
                 <div class="searchbar">
-                    <input class="search_input" type="text" name="name" placeholder="Search...">
+                    <input class="search_input" type="text" name="query" id="query"  placeholder="Search...">
                     
                     <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
                     
