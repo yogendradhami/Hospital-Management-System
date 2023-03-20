@@ -26,6 +26,8 @@ def logintem(request):
 def Department_Index(request):
     return render(request, 'department/department_index.html')
 
+
+
 def Appointment_Index(request):
     posts=AddDoctor.objects.all()
     context={'posts':posts}
@@ -33,8 +35,10 @@ def Appointment_Index(request):
 
 
 def Add_Doctor(request):
+    data= AddDoctor()
+    department=Department.objects.all()
     doc_create_form =  AddDoctorCreateForm()
-    context={"form": doc_create_form}
+    context={"form": doc_create_form, "data":data, "department": department}
 
     if request.method == "POST":
         doc=AddDoctor()
@@ -53,14 +57,14 @@ def Add_Doctor(request):
 
 def Book_Appointment(request):
 
-    data = BookAppointment.objects.get()
+    data = BookAppointment()
     department=Department.objects.all()
     select_doctor= AddDoctor.objects.all()
     context = {"data":data, "department":department,"addDoctor":select_doctor}
 
 
     if request.method=='POST':
-        book = BookAppointment.objects.get()
+        book = BookAppointment()
         department=  Department.objects.get(request.POST.get('department'))
         select_doctor=  AddDoctor.objects.get(request.POST.get('select_doctor'))
 
@@ -75,6 +79,7 @@ def Book_Appointment(request):
         book.save()
     
         messages.success(request, 'Appointment Booked successfully')
+        return redirect('book-appointment')
     
     return render(request, 'book_appointment/book_appointment.html',context)
 

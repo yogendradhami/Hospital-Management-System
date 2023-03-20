@@ -30,7 +30,7 @@
     </div>
     <div class="row g-2">
 
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
 
             <div class="card p-2 py-3 text-center">
 
@@ -300,9 +300,9 @@
 
             </div>
             
-        </div>
+        </div> -->
 
-
+        {% for post in posts %}
 
         <div class="col-md-3">
             
@@ -310,15 +310,16 @@
             <div class="card p-2 py-3 text-center">
 
                 <div class="img mb-2">
-                    {% for post in posts %}
-                    <img src="{{post.image.url}}" width="70" class="rounded-circle">
-                    {%endfor%}
+                    
+                    <img src="{{posts.image.url}}" width="70" alt="image..." class="rounded-circle">
+                  
                 </div>
-                {%  for post in posts %}
+                
                 <h5 class="mb-0">{{post.name}}</h5>
                 <small>{{ post.specialization }}</small>
                 <small>{{ post.department }}</small>
-                {% endfor %}
+                <small>booking  count: <strong>ask to sir (per day booking  limit is 25)</strong> </small>
+               
                 <div class="ratings mt-2">
 
                     <i class="fa fa-star"></i>
@@ -330,7 +331,7 @@
 
                 <div class="mt-4 apointment">
 
-                    <a href="" class="btn btn-success text-uppercase">Book Appointment</a>
+                    <a href="{% url 'appointment-booking' %}" class="btn btn-success text-uppercase" >Book Appointment</a>
                     
                 </div>
 
@@ -339,7 +340,7 @@
             
         </div>
 
-
+ {% endfor %}
 
 
 
