@@ -260,11 +260,11 @@ color: #0085ff;
                 <div class="col-md-6 col-lg-3">
                     <div class="footer-links">
                         <h3>Useful Links</h3>
-                        <a href="">Log into my github</a>
-                        <a href="">Log into my facebook</a>
-                        <a href="">login</a>
-                        <a href="">logout</a>
-                        <a href="">home</a>
+                        <a href="https://github.com/login">Log into my github</a>
+                        <a href="https://www.facebook.com/">Log into my facebook</a>
+                        <!-- <a href="">login</a>
+                        <a href="">logout</a> -->
+                        <a href="{% url 'home' %}">home</a>
                         <a href="">About</a>
                     </div>
 
@@ -314,7 +314,7 @@ color: #0085ff;
                             <a href="#">About</a>
                             <a href="#">Terms</a>
                             <a href="#">Privacy</a>
-                            <a href="#">Contact</a>
+                            <a href="{% url 'contact-us' %}">Contact</a>
                         </div>
                     </div>
                 </div>

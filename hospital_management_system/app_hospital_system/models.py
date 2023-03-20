@@ -100,7 +100,9 @@ class Footer(models.Model):
 
 class Drug(models.Model):
     name = models.CharField(max_length=299)
+    
     specification =  models.TextField()
+   
     cost = models.CharField(max_length=100)
     availability = models.CharField(max_length=100)
 
@@ -131,3 +133,12 @@ class Patient(models.Model):
     class Meta:
         db_table = "app_patient"
 
+class Pharmacy(models.Model):
+    generic_name= models.CharField(max_length=100)
+    medicine_name= models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.generic_name
+    
+    class Meta:
+        db_table = "app_pharmacy"

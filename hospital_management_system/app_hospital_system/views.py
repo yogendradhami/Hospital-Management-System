@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy
 from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm
 from django.contrib import messages
 import datetime
@@ -133,7 +133,9 @@ def Staff_Add(request):
 
 def Drug_Index(request):
     drug_list= Drug.objects.all()
-    context ={'data':drug_list}
+    pharm = Pharmacy.objects.all()
+    context= {"data":pharm}
+    context ={'data':drug_list, "dat":pharm}
     return render(request, 'drug/index_drug.html',context)
 
 def Drug_Add(request):
@@ -143,6 +145,7 @@ def Drug_Add(request):
     if request.method == "POST":
         drg = Drug()
         drg.name = request.POST.get('name')
+     
         drg.specification= request.POST.get('specification')
         drg.cost= request.POST.get('cost')
         drg.availability= request.POST.get('availability')
@@ -221,7 +224,27 @@ def Patient_update(request):
     
 
 def Index_pharmacy(request):
-    return render(request, 'department/pharmacy_management_system/index_pharmacy.html')
+    pharm = Pharmacy.objects.all()
+    context= {"data":pharm}
+
+    if request.method ==  "POST":
+        phar= Pharmacy()
+        phar.generic_name = request.POST.get('generic_name')
+        phar.medicine_name= request.POST.get('medicine_name')
+        phar.save()
+
+        messages.success(request, "Medicine Added Successfully !!!")
+        return redirect('pharmacy-index')
+
+
+    return render(request, 'department/pharmacy_management_system/index_pharmacy.html',context)
+
+
+def Pharmacy_delete(request,id):
+    data = Pharmacy.objects.get(id=id)
+    data.delete()
+    messages.success(request,'Medicine Detail deleted successfully!!')
+    return redirect('pharmacy-index')
 
 def Index_Service(request):
     return render(request, 'department/services/index_service.html')
