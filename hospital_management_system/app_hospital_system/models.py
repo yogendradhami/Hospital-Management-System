@@ -142,3 +142,18 @@ class Pharmacy(models.Model):
     
     class Meta:
         db_table = "app_pharmacy"
+
+class Staff(models.Model):
+    name = models.CharField(max_length=100)
+    address=models.CharField(max_length=100)
+    contact=models.CharField(max_length=100)
+    gender=models.CharField(max_length=100)
+    designation =models.CharField(max_length=100)
+    duty_time=models.CharField(max_length=100)
+    duty_ward=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = "app_staff"

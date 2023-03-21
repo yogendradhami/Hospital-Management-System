@@ -1,14 +1,18 @@
 from django.shortcuts import render,redirect, HttpResponse
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy
-from .forms import AddMedicineCreateForm, AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy,Staff
+
+from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm
+
 from django.contrib import messages
-import datetime
+# import datetime
+
 from django.views import View
 # from django.views.generic.edit import FormView
+
+
+# this is for search
 from app_hospital_system.models import Doctor, Department, AddDoctor,BookAppointment, Contactus,Footer,Drug,Patient,Pharmacy
-
-
 
 # Create your views here.
 
@@ -125,9 +129,12 @@ class Footer_Page(View):
         
 
 def Staff_Index(request):
-    
-    
-    return render(request, 'staff/staf/index_staff.html', )
+    data = Staff.objects.all()
+    context={
+        'data':data
+    }
+  
+    return render(request, 'staff/staf/index_staff.html',context )
 
 def Staff_Add(request):
     return render(request, 'staff/staf/add_staff.html')
@@ -292,7 +299,7 @@ def Search(request):
         add_doctor= AddDoctor.objects.filter(name__icontains=query)
         allPosts = add_doctor
 
-        
+
     if allPosts.count == 0:
         messages.warning(request, "No search result found. Please refine your query.")
     params = {'allPosts':allPosts,
