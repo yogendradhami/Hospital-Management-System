@@ -17,7 +17,7 @@ Patient - Edit
             <form action="{% url 'patient-update' %}" method="post">
                 {% csrf_token %}
 
-                <!-- <input type="hidden" name="id" value="{{ data.id }}" /> -->
+                <input type="hidden" name="id" value="{{ data.id }}" />
 
                 <div class="form-group mb-2">
                     <label class="mb-2">Patient Name</label>

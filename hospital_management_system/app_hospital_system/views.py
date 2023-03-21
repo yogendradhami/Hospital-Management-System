@@ -127,10 +127,10 @@ class Footer_Page(View):
 def Staff_Index(request):
     
     
-    return render(request, 'staff/index_staff.html', )
+    return render(request, 'staff/staf/index_staff.html', )
 
 def Staff_Add(request):
-    return render(request, 'staff/add_staff.html')
+    return render(request, 'staff/staf/add_staff.html')
 
 def Drug_Index(request):
     drug_list= Drug.objects.all()
@@ -172,7 +172,6 @@ def Patient_Add(request):
     patinet_create_form = patientCreateForm()
     # data = Patient()
     context= {"form":patinet_create_form}
-
 
     if request.method == "POST":
         pnt=Patient()
@@ -252,7 +251,7 @@ def Index_Service(request):
 
 def Doctor_index(request):
    
-    posts = Doctor.objects.get()
+    posts = Doctor.objects.all()
     context= {'posts':posts}
 
 
