@@ -1,4 +1,4 @@
-{% include 'layouts/master.html' %}
+{% include 'layouts/main.html' %}
 
 {% load static %}
 
@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block custom_css %}
+<link  href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet"/>
+
     
 {% endblock %}
 
@@ -69,4 +71,3 @@
 
 {% endblock %}
 <hr>
-{% include 'component/footer.html '%}

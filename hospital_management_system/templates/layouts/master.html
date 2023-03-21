@@ -53,6 +53,9 @@
   <body>
     {% include 'component/navbar.html' %}
 
+    <!-- messeage section -->
+    {% include "partials/_message.html" %}
+
     <!-- ======= Departments Section ======= -->
     <section id="departments" class="departments">
       <div class="container" data-aos="fade-up">
@@ -530,6 +533,8 @@
     <!-- body content over here -->
 
     {% endblock %}
+
+    {% include 'component/footer.html' %}
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script

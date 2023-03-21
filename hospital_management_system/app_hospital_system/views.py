@@ -14,31 +14,35 @@ from django.views import View
 # this is for search
 from app_hospital_system.models import Doctor, Department, AddDoctor,BookAppointment, Contactus,Footer,Drug,Patient,Pharmacy
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
+# Create your views here.
+@login_required(login_url= 'user_login')
 def Home(request):
     return render(request, 'layouts/master.html')
 
 
-def logintem(request):
-    if request.method == 'POST':
-        inote = request.POST['inote']
-        first_name= request.POST['first_name']
-        add_medicine= AddMedicine(first_name=first_name,inote=inote)
-        add_medicine.save()
-    return render(request, 'logintemp.html')
+# def logintem(request):
+#     if request.method == 'POST':
+#         inote = request.POST['inote']
+#         first_name= request.POST['first_name']
+#         add_medicine= AddMedicine(first_name=first_name,inote=inote)
+#         add_medicine.save()
+#     return render(request, 'logintemp.html')
 
+
+@login_required(login_url= 'user_login')
 def Department_Index(request):
     return render(request, 'department/department_index.html')
 
 
-
+@login_required(login_url= 'user_login')
 def Appointment_Index(request):
     posts=AddDoctor.objects.all()
     context={'posts':posts}
     return render(request, 'book_appointment/appointment_index.html',context)
 
-
+@login_required(login_url= 'user_login')
 def Add_Doctor(request):
     data= AddDoctor()
     department=Department.objects.all()
@@ -59,7 +63,7 @@ def Add_Doctor(request):
 
     return render(request,'book_appointment/add_doctor.html',context)
 
-
+@login_required(login_url= 'user_login')
 def Book_Appointment(request):
 
     data = BookAppointment()
@@ -89,7 +93,7 @@ def Book_Appointment(request):
     return render(request, 'book_appointment/book_appointment.html',context)
 
 
-
+@login_required(login_url= 'user_login')
 def Contact_Us(request):
     context= {
         'Title':'Our Contact',
@@ -110,7 +114,6 @@ def Contact_Us(request):
         return redirect('contact-us')
     return render(request, 'book_appointment/contactus.html', context)
 
-
 class Footer_Page(View):
     def get(self,request):
         return render(request, 'component/footer.html')
@@ -128,7 +131,7 @@ class Footer_Page(View):
             return redirect('footer')
         
 # functions for staff
-
+@login_required(login_url= 'user_login')
 def Staff_Index(request):
     data = Staff.objects.all()
     context={
@@ -137,6 +140,7 @@ def Staff_Index(request):
   
     return render(request, 'staff/staf/index_staff.html',context )
 
+@login_required(login_url= 'user_login')
 def Staff_Add(request):
     data= staffCreateForm()
     context= {'form':data}
@@ -158,11 +162,14 @@ def Staff_Add(request):
 
     return render(request, 'staff/staf/add_staff.html',context)
 
+@login_required(login_url= 'user_login')
 def Staff_View(request,id):
     data=Staff.objects.get(id=id)
     context= {'data':data}
     return render(request, 'staff/staf/view_staff.html',context)
 
+
+@login_required(login_url= 'user_login')
 def Staff_Edit(request,id):
     data= Staff.objects.get(id=id)
     context= {
@@ -170,6 +177,8 @@ def Staff_Edit(request,id):
     }
     return render(request, 'staff/staf/edit_staff.html',context)
 
+
+@login_required(login_url= 'user_login')
 def Staff_Update(request):
     if request.method== 'POST':
         stf=Staff.objects.get(id=request.POST.get('id'))
@@ -185,6 +194,8 @@ def Staff_Update(request):
         messages.success(request, "Staff Edited Successfully")
         return redirect('staff-index')
 
+
+@login_required(login_url= 'user_login')
 def Staff_Delete(request,id):
     data=Staff.objects.get(id=id)
     data.delete()
@@ -193,6 +204,7 @@ def Staff_Delete(request,id):
 
 # function for   Drug
 
+@login_required(login_url= 'user_login')
 def Drug_Index(request):
     drug_list= Drug.objects.all()
     pharm = Pharmacy.objects.all()
@@ -200,6 +212,8 @@ def Drug_Index(request):
     context ={'data':drug_list, "dat":pharm}
     return render(request, 'drug/index_drug.html',context)
 
+
+@login_required(login_url= 'user_login')
 def Drug_Add(request):
     drug_create_form = DrugCreateForm()
     context = {"form":drug_create_form}
@@ -218,17 +232,22 @@ def Drug_Add(request):
     return render(request, 'drug/add_drug.html',context)
 
 
+@login_required(login_url= 'user_login')
 def Patient_Index(request):
     patient_list = Patient.objects.all()
     context={"data":patient_list}
 
     return render(request, 'staff/patient/index_patient.html',context)
 
+
+@login_required(login_url= 'user_login')
 def Patient_view(request,id):
     data= Patient.objects.get(id=id)
     context= {"data":data}
     return render(request, 'staff/patient/view_patient.html',context)
 
+
+@login_required(login_url= 'user_login')
 def Patient_Add(request):
     patinet_create_form = patientCreateForm()
     # data = Patient()
@@ -253,17 +272,23 @@ def Patient_Add(request):
         return redirect('patient-index')
     return render(request, 'staff/patient/add_patient.html',context)
 
+
+@login_required(login_url= 'user_login')
 def Patient_delete(request,id):
     data = Patient.objects.get(id=id)
     data.delete()
     messages.success(request,'Patient Details deleted successfully!!')
     return redirect('patient-index')
 
+
+@login_required(login_url= 'user_login')
 def Patient_edit(request,id):
     data = Patient.objects.get(id=id)
     context= {"data":data}
     return render(request, 'staff/patient/edit_patient.html',context)
 
+
+@login_required(login_url= 'user_login')
 def Patient_update(request):
      if request.method == "POST":
         pnt=Patient.objects.get(id=request.POST.get('id'))
@@ -284,6 +309,7 @@ def Patient_update(request):
         return redirect('patient-index')
     
 
+@login_required(login_url= 'user_login')
 def Index_pharmacy(request):
     pharm = Pharmacy.objects.all()
     context= {"data":pharm}
@@ -301,15 +327,20 @@ def Index_pharmacy(request):
     return render(request, 'department/pharmacy_management_system/index_pharmacy.html',context)
 
 
+@login_required(login_url= 'user_login')
 def Pharmacy_delete(request,id):
     data = Pharmacy.objects.get(id=id)
     data.delete()
     messages.success(request,'Medicine Detail deleted successfully!!')
     return redirect('pharmacy-index')
 
+
+@login_required(login_url= 'user_login')
 def Index_Service(request):
     return render(request, 'department/services/index_service.html')
 
+
+@login_required(login_url= 'user_login')
 def Doctor_index(request):
    
     posts = Doctor.objects.all()
@@ -318,6 +349,7 @@ def Doctor_index(request):
 
     return render(request, 'staff/doctor/index_doctor.html',context)
 
+@login_required(login_url= 'user_login')
 def Search(request):
     query = request.GET['query']
     if len(query)>80:

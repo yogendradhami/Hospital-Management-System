@@ -285,7 +285,7 @@ color: #0085ff;
         </div>
         <div class="container footer-newsletter">
             <p>I'm  sure that you will  enjoy the project...</p>
-            <form action="" method="post">
+            <form action="{% url 'footer' %}" method="post">
                 {% csrf_token %}
             <div class="row ">
                 <div class="col-sm-4">

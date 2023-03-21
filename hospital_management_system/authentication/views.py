@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.shortcuts import render,redirect
 from django.views import View
@@ -33,7 +31,7 @@ class LoginPage(View):
         if user:
             login(request, user)
             messages.success(request, 'Login successfully')
-            return redirect('logintemp')
+            return redirect('home')
         else:
             messages.error(request, 'Invalid username or password')
             return redirect('user_login')

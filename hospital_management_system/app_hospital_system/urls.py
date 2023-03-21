@@ -20,6 +20,7 @@ urlpatterns = [
     # this is url for contact us  and footer page
 
     path('contact-us/', views.Contact_Us, name='contact-us'),
+    
     path('footer/', Footer_Page.as_view(),name='footer'),
 
     # this is the url for staff 
