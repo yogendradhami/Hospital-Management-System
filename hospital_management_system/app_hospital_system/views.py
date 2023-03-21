@@ -6,7 +6,7 @@ from django.contrib import messages
 import datetime
 from django.views import View
 # from django.views.generic.edit import FormView
-from app_hospital_system.models import Doctor
+from app_hospital_system.models import Doctor, Department, AddDoctor,BookAppointment, Contactus,Footer,Drug,Patient,Pharmacy
 
 
 
@@ -265,7 +265,37 @@ def Search(request):
         allPostsTitle = Doctor.objects.filter(title__icontains=query)
         allPostsDoctorName = Doctor.objects.filter(doctor_name__icontains=query)
         allPosts= allPostsTitle.union(allPostsDoctorName)
+
+        allPostsDepName = Department.objects.filter(department_name__icontains=query)
+        allPostsDepSname = Department.objects.filter(department_name__icontains=query)
+        allPosts= allPostsDepName.union(allPostsDepSname)
+
+        allPostsPhar = Pharmacy.objects.filter(generic_name__icontains=query)
+        allPostsPharM = Pharmacy.objects.filter(medicine_name__icontains=query)
+        allPosts= allPostsPhar.union(allPostsPharM)
+
+        patient= Patient.objects.filter(patient_name__icontains=query)
+        allPosts = patient
+
+        drug= Drug.objects.filter(name__icontains=query)
+        allPosts = drug
+
+        footer= Footer.objects.filter(name__icontains=query)
+        allPosts = footer
+
+        contact_us= Contactus.objects.filter(name__icontains=query)
+        allPosts = contact_us
+
+        book_appointment= BookAppointment.objects.filter(full_name__icontains=query)
+        allPosts = book_appointment
+
+        add_doctor= AddDoctor.objects.filter(name__icontains=query)
+        allPosts = add_doctor
+
+        
     if allPosts.count == 0:
         messages.warning(request, "No search result found. Please refine your query.")
-    params = {'allPosts':allPosts, 'query':query}
+    params = {'allPosts':allPosts,
+               'query':query
+            }
     return render(request, 'component/search.html',params)

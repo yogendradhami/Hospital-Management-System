@@ -41,10 +41,10 @@ class AddDoctor(models.Model):
 class Doctor(models.Model):
     title= models.CharField(max_length=200)
     doctor_name = models.CharField(max_length=255)
-    docotor_address=models.CharField(max_length=100)
+    doctor_address=models.CharField(max_length=100)
     doctor_number= models.CharField(max_length=50)
     doctor_gender = models.CharField(max_length=50)
-    docotor_specialization= models.CharField(max_length=150)
+    doctor_specialization= models.CharField(max_length=150)
     # short_name = models.CharField(max_length=255, null=True, blank=True)
     status = models.BooleanField(default=True)
     message=models.TextField()

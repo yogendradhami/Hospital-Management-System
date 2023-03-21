@@ -7,9 +7,44 @@
 {% endblock %}
 
 {% block custom_css %}
+<style>
+ 
+  #myInput {
+    background-image: url('{% static "img/search.png" %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 50%;
+    
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #dddddd;
+    margin-bottom: 12px;
+  }
+  
+  #myTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+  }
+  
+  #myTable th, #myTable td {
+    text-align: left;
+    padding: 12px;
+  }
+  
+  #myTable tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #myTable tr.header, #myTable tr:hover {
+    background-color: #f1f1f1;
+  }
+  </style>
 {% endblock %}
 
 {% block content %}
+
 <div class="container mt-5">
     <h1> Patient index section</h1>
     <hr>
@@ -57,57 +92,17 @@
 
 
 
-
-
-     
-      <style>
-      * {
-        box-sizing: border-box;
-      }
-      
-      #myInput {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-      }
-      
-      #myTable {
-        border-collapse: collapse;
-        width: 100%;
-        border: 1px solid #ddd;
-        font-size: 18px;
-      }
-      
-      #myTable th, #myTable td {
-        text-align: left;
-        padding: 12px;
-      }
-      
-      #myTable tr {
-        border-bottom: 1px solid #ddd;
-      }
-      
-      #myTable tr.header, #myTable tr:hover {
-        background-color: #f1f1f1;
-      }
-      </style>
-     
      <div class="container mt-5">
 
       {% include "partials/_message.html" %}
   
   </div>
-  <div class="container my-0">
+  
       <h2>PATIENT'S</h2>
       
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
       
-      <table id="myTable" class="table">
+      <table id="myTable" class="table table-responsive table-info table-striped-columns table-hover">
         <thead>
         <tr class="header">
           <th scope="col">S.N</th>
@@ -137,7 +132,7 @@
           <td> {{ val.patient_release_date }} </td>
           <td> {{ val.patient_days_spent }} </td>
           <td> {{ val.patient_age }}</td>
-          <td> {{ val.patient_disease_symptom }} </td>
+          <td> {{ val.patient_disease_symptoms }} </td>
           <td> {{ val.patient_status }} </td>
           
           <td><a href="{% url 'patient-edit' val.id %}"><i class="fa-solid fa-pencil"></i>edit</a></td>

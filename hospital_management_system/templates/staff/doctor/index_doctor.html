@@ -1,27 +1,30 @@
-{% extends 'layouts/main.html' %}
+{% extends 'layouts/main.html' %} {% load static %} {% block title %} Doctor -
+List {% endblock %} {% block custom_css %}
+<link rel="stylesheet" href="{% static 'css/department.css' %}" />
 
-{% load static %}
-
-{% block title %}
-    Doctor - List
-{% endblock %}
-
-{% block custom_css %}
-<link rel="stylesheet" href="{% static 'css/department.css' %}">
-
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container mt-3">
-    <h1 style="text-align: center; text-decoration: underline; text-transform: capitalize;"> Doctor index pannel</h1>
-    <hr>
-    <a href="{% url 'add-staff' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Back</a>
-    <a href="{% url 'add-staff' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add</a>
-    <a href="" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Delete</a>
-    
-    <hr>
+  <h1
+    style="
+      text-align: center;
+      text-decoration: underline;
+      text-transform: capitalize;
+    "
+  >
+    Doctor index pannel
+  </h1>
+  <hr />
+  <!-- <a href="{% url 'add-staff' %}" class="btn btn-primary"
+    ><i class="fa-solid fa-plus"></i>Back</a
+  > -->
+  <a href="{% url 'add-staff' %}" class="btn btn-primary"
+    ><i class="fa-solid fa-plus"></i>Add</a
+  >
+  <a href="" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Delete</a>
 
-    <!-- <table class="table table-info table-striped-columns table-hover">
+  <hr />
+
+  <!-- <table class="table table-info table-striped-columns table-hover">
         <thead>
           <tr>
             <th scope="col">S.N</th>
@@ -59,29 +62,43 @@
         </tbody>
       </table> -->
 
+  <!-- ======= Departments Section ======= -->
+  <section id="departments" class="mb-5 departments">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title mt-5">
+        <h2
+          style="
+            text-align: center;
+            text-decoration: underline;
+            text-transform: uppercase;
+          "
+        >
+          Doctors
+        </h2>
+        <p>
+          Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
+          aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
+          quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+          fugiat sit in iste officiis commodi quidem hic quas.
+        </p>
+      </div>
 
-
-              <!-- ======= Departments Section ======= -->
-    <section id="departments" class=" mb-5 departments">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title mt-5">
-          <h2 style="text-align: center;text-decoration: underline; text-transform: uppercase;">Doctors</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <ul class="nav nav-tabs flex-column">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-                  {% for post in posts %}
-                  <h4>{{title}}</h4>
-                  <p>{{message}}</p>
-                  {%endfor%}
-                </a>
-              </li>
-              <li class="nav-item mt-2">
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item">
+              {% for post in posts %}
+              <a
+                class="nav-link active show"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-1"
+              >
+                <h4>{{post.title}}</h4>
+                <p>{{post.message}}</p>
+              </a>
+              {%endfor%}
+            </li>
+            <!-- <li class="nav-item mt-2">
                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
                   <h4>Neurology</h4>
                   <p>Voluptas vel esse repudiandae quo excepturi.</p>
@@ -98,28 +115,39 @@
                   <h4>Pediatrics</h4>
                   <p>Ratione hic sapiente nostrum doloremque illum nulla praesentium id</p>
                 </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-8">
-            <div class="tab-content">
-              <div class="tab-pane active show" id="tab-1">
-                {% for post in posts %}
-                <h3>{{title}}</h3>
-                <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-               
-                <img src="{% static 'img/department/departments-1.jpg'%}" alt="" class="img-fluid">
-                <div class="container fst-italic text-info">
-                <span >Name: {{doctor_name}}</span><br>
-                <span>Number: {{doctor_address}}</span><br>
-                <span>Contact: {{doctor_contact}}</span><br>
-                <span>Gender: {{doctor_gender}}</span><br>
-                <span>Status: </span><br>
-                <span>Specialization: {{doctor_specialization}}</span>
+              </li> -->
+          </ul>
+        </div>
+        <div class="col-lg-8">
+          <div class="tab-content">
+            <div class="tab-pane active show" id="tab-1">
+              {% for post in posts %}
+              <h3>{{post.title}}</h3>
+              
+              <p class="fst-italic">
+                Qui laudantium consequatur laborum sit qui ad sapiente dila
+                parde sonata raqer a videna mareta paulona marka
+              </p>
+
+              <img
+                src="{% static 'img/department/departments-1.jpg'%}"
+                alt="image..."
+                class="img-fluid"
+              />
+              <div class="container fst-italic text-info">
+                
+                <span>Name: {{post.doctor_name}}</span><br />
+                <span>Number: {{post.doctor_address}}</span><br />
+                <span>Contact: {{post.doctor_number}}</span><br />
+                <span>Gender: {{post.doctor_gender}}</span><br />
+                <span>Status: {{post.status}}</span><br />
+                <span>Specialization: {{post.doctor_specialization}}</span>
+                
               </div>
-{% endfor%}
-              </div>
-              <div class="tab-pane" id="tab-2">
+              {% endfor%}
+            </div>
+
+            <!-- <div class="tab-pane" id="tab-2">
                 <h3>Neurology</h3>
                 <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
                 <img src="{% static 'img/department/departments-2.jpg'%}" alt="" class="img-fluid">
@@ -136,26 +164,17 @@
                 <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
                 <img src="{% static 'img/department/departments-4.jpg'%}" alt="" class="img-fluid">
                 <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
-              </div>
-            </div>
+              </div> -->
           </div>
         </div>
-
       </div>
-    </section>
-    <!-- End Departments Section -->
-
-
-
     </div>
+  </section>
+  <!-- End Departments Section -->
+</div>
 
-
-
-
-
-
-    <script src="">
-        let table = new DataTable('#myTable');
-    </script>
+<script src="">
+  let table = new DataTable("#myTable");
+</script>
 
 {% endblock %}
