@@ -6,6 +6,9 @@ from django.contrib import auth
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.core.mail import send_mail
+from .helpers import send_forget_password_mail
+import uuid
+from .models import Profile
 
 
 # Create your views here.
@@ -67,5 +70,41 @@ class RegisterPage(View):
                 [data.email] #reciever
             )
             return redirect('user_login')
+        
+
+def ChangePassword(request,token):
+    context={}
+    try:
+        profile_obj =Profile.objects.filter(forget_password_token =token).first()
+
+        print(profile_obj)
+
+
+    except Exception as e:
+        print(e)
+    return render(request, 'authentication/change_password.html')
+
+def forgetPassword(request):
+    try:
+        if request.method == 'POST':
+            username=request.POST.get('username')
+
+            if not User.objects.filter(username=username).first():
+                messages.success(request, 'No user found with this username.')
+                return redirect('forgot-password')
+            
+            user_obj= User.objects.get(username=username)
+            token =str(uuid.uuid4())
+            profile_obj = Profile.objects.get(user=user_obj)
+            profile_obj.forgot_password_token=token
+            
+            send_forget_password_mail(user_obj, token)
+            messages.success(request, 'An email is sent.')
+            return redirect('forgot-password')
+
+
+    except Exception as e:
+        print(e)
+    return render(request, 'authentication/forgot_password.html')
 
         
