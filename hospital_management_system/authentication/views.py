@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -36,8 +37,6 @@ class LoginPage(View):
             messages.error(request, 'Invalid username or password')
             return redirect('user_login')
 
-    
-
 class RegisterPage(View):
     def get(self,  request):
         return render(request,'authentication/register.html')
@@ -57,9 +56,16 @@ class RegisterPage(View):
                 return redirect('user_registration')
         
         except:
-            date = User.objects.create_user(first_name= first_name, last_name= last_name, email=email, username=username,password=password)
+            data = User.objects.create_user(first_name= first_name, last_name= last_name, email=email, username=username,password=password)
 
             messages.success(request, 'Account has been created successfully!')
+            send_mail(
+                'Account Creation |  HMS', #subject
+                'Your account has been created! \n Welcome \n' +
+                data.username, #message
+                'yogendradhami631@gmail.com', # sender
+                [data.email] #reciever
+            )
             return redirect('user_login')
 
         
