@@ -1,0 +1,39 @@
+{% extends 'layouts/main.html' %}
+
+<!-- title section starts here -->
+
+{%  block title %}
+    Staff - Details
+{% endblock %}
+
+<!-- title section ends here -->
+
+ <!-- custom css section starts here -->
+ {% block custom_css %}
+
+
+ 
+ {% endblock %}
+
+ <!-- custom css section ends here -->
+
+{% block content %}
+<div class="container mt-5 mb-5 " >
+    <h1>This is staff detail page</h1>
+<a href="{% url 'staff-index' %}" class="btn btn-primary"> <h3> <i class="fa fa-arrow-left" aria-hidden="true"></i> </h3></a>
+<hr>
+<div class="card fst-italic" >
+    <div class="card-header text-center"><h4>  Image:- <br>{{ data.image }}</h4></div>
+    <div class="card-header text-center text-capitalize fs-3"><h4>Full Name:- {{ data.name }}</h4></div>
+    <div class="ccard-body color-primary fst-italic " >
+        <h6 class="text-center text-capitalize fs-3">Address:- {{ data.address }} </h6>
+        <h6 class="text-center text-capitalize fs-3" >Contact:- {{ data.contact }} </h6>
+        <h6 class="text-center text-capitalize fs-3" >Gender:- {{ data.gender }} </h6>
+        <h6 class="text-center text-capitalize fs-3 " >Position:- {{ data.designation }} </h6>
+        <h6 class="text-center text-capitalize fs-3" >Duty hour:- {{ data.duty_time }} </h6>
+        <h6 class="text-center text-capitalize fs-3" >Duty Ward:- {{ data.duty_ward }} </h6>
+        
+    </div>
+</div>
+</div>
+{% endblock%}

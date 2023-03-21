@@ -127,6 +127,7 @@ class Footer_Page(View):
             messages.success(request, "You're suscribed")
             return redirect('footer')
         
+# functions for staff
 
 def Staff_Index(request):
     data = Staff.objects.all()
@@ -156,6 +157,41 @@ def Staff_Add(request):
         return redirect('staff-index')
 
     return render(request, 'staff/staf/add_staff.html',context)
+
+def Staff_View(request,id):
+    data=Staff.objects.get(id=id)
+    context= {'data':data}
+    return render(request, 'staff/staf/view_staff.html',context)
+
+def Staff_Edit(request,id):
+    data= Staff.objects.get(id=id)
+    context= {
+        'data':data
+    }
+    return render(request, 'staff/staf/edit_staff.html',context)
+
+def Staff_Update(request):
+    if request.method== 'POST':
+        stf=Staff.objects.get(id=request.POST.get('id'))
+        stf.name=request.POST.get('name')
+        stf.address = request.POST.get('address')
+        stf.contact = request.POST.get('contact')
+        stf.gender = request.POST.get('gender')
+        stf.designation = request.POST.get('designation')
+        stf.duty_time = request.POST.get('duty_time')
+        stf.duty_ward = request.POST.get('duty_ward')
+        stf.image = request.POST.get('image')
+        stf.save()
+        messages.success(request, "Staff Edited Successfully")
+        return redirect('staff-index')
+
+def Staff_Delete(request,id):
+    data=Staff.objects.get(id=id)
+    data.delete()
+    messages.success(request,'Staff Details deleted successfully!!')
+    return redirect('staff-index')
+
+# function for   Drug
 
 def Drug_Index(request):
     drug_list= Drug.objects.all()

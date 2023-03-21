@@ -25,6 +25,11 @@ urlpatterns = [
     # this is the url for staff 
     path('staff-index/', views.Staff_Index, name='staff-index'),
     path('add-staff/', views.Staff_Add, name='add-staff'),
+    path('staff-view/<int:id>/', views.Staff_View, name='staff-view'),
+    path('staff-edit/<int:id>/', views.Staff_Edit, name='staff-edit'),
+    path('staff-update/', views.Staff_Update, name='staff-update'),
+    path('staff-delete/<int:id>/', views.Staff_Delete, name='staff-delete'),
+
 
     # this is url for medicine
     path('drug-index/', views.Drug_Index, name='drug-index'),
