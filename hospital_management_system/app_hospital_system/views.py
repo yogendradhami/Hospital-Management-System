@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect, HttpResponse
 # from django.contrib.auth.models import User
 from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy,Staff
 
-from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm
+from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm,staffCreateForm
 
 from django.contrib import messages
 # import datetime
@@ -137,7 +137,25 @@ def Staff_Index(request):
     return render(request, 'staff/staf/index_staff.html',context )
 
 def Staff_Add(request):
-    return render(request, 'staff/staf/add_staff.html')
+    data= staffCreateForm()
+    context= {'form':data}
+
+    if request.method=='POST':
+        stf=Staff()
+        stf.name = request.POST.get('name')
+        stf.address= request.POST.get('address')
+        stf.contact = request.POST.get('contact')
+        stf.gender = request.POST.get('gender')
+        stf.designation = request.POST.get('designation')
+        stf.duty_time = request.POST.get('duty_time')
+        stf.duty_ward = request.POST.get('duty_ward')
+        stf.image=request.POST.get('image')
+        stf.save()
+
+        messages.success(request, 'Staff added successfully in table')
+        return redirect('staff-index')
+
+    return render(request, 'staff/staf/add_staff.html',context)
 
 def Drug_Index(request):
     drug_list= Drug.objects.all()

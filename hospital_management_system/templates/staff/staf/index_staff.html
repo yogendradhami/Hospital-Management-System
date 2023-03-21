@@ -57,7 +57,7 @@
       
   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-    <table id="myTable" class="table table-info table-striped-columns table-hover">
+    <table id="myTable" class="table table-info table-striped-columns table-hover table-responsive">
         <thead>
           <tr class="header">
             <th scope="col">S.N</th>
@@ -68,6 +68,7 @@
             <th scope="col">Designation</th>
             <th scope="col">Shift Time</th>
             <th scope="col">Duty Ward</th>
+            <th scope="col">Image</th>
             
             <!-- <th scope="col">Status</th> -->
             <!-- <th scope="col">Contact</th> -->
@@ -86,6 +87,7 @@
             <td>{{val.designation}}</td>
             <td>{{val.duty_time}}</td>
             <td>{{val.duty_ward}}</td>
+            <td>{{val.image}}</td>
 
             <td><a href=""><i class="fa-solid fa-pencil"></i>edit</a></td>
             <td><a href=""><i class="fa-solid fa-eye"></i>view</a></td>

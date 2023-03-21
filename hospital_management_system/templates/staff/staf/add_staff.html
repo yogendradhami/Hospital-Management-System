@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-
+Add - Staff
 {% endblock %}
 
 {% block custom_css %}
@@ -11,5 +11,23 @@
 {% endblock %}
 
 {% block content %}
-    <h1> staff index section</h1>
+<div class="container mt-5 mb-5">
+    <h1> Staff Add Page</h1>
+
+    <hr />
+    <a href="{% url 'staff-index' %}" class="btn btn-primary"
+      ><i class="fa-solid fa-plus"></i>Back</a
+    >
+    <hr />
+  
+    <div class="row">
+      <form action="{% url 'add-staff' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+
+  <input type="submit" value="Submit">
+</form>
+</div>
+</div>
+
 {% endblock %}

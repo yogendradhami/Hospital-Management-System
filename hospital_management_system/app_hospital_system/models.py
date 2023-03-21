@@ -150,8 +150,9 @@ class Staff(models.Model):
     gender=models.CharField(max_length=100)
     designation =models.CharField(max_length=100)
     duty_time=models.CharField(max_length=100)
+   
     duty_ward=models.CharField(max_length=100)
-
+    image=models.ImageField(upload_to='static/img/staff')
     def __str__(self):
         return self.name
     
