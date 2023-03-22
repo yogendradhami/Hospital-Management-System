@@ -4,9 +4,14 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns =[
+
+    # urls login logout and register page
     path('login/', LoginPage.as_view(), name='user_login'),
+
     path('logout/',LogoutPage.as_view(), name= 'logout'),
+
     path('register/', RegisterPage.as_view(), name='user_registration'),
+    
     path('dashboard', views.Dashboard, name='dashboard' ),
 
     # path('change-password/<token>/', views.ChangePassword, name='change-password'),

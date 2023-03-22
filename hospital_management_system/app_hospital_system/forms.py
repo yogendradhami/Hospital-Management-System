@@ -6,17 +6,22 @@ class AddMedicineCreateForm(forms.ModelForm):
         fields = "__all__"
         model = AddMedicine
 
+# for for AddDoctor page
+
 class AddDoctorCreateForm(forms.ModelForm):
     class Meta:
         fields = "__all__"
         model = AddDoctor
         
 
+# form for Bookappointmentpage
+
 class BookAppointmentCreateForm(forms.ModelForm):
     class Meta:
         fields = '__all__'
         model = BookAppointment
 
+# form for drug page
 class DrugCreateForm(forms.ModelForm):
     class Meta:
         fields = '__all__'

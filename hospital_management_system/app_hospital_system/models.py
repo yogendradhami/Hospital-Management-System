@@ -22,6 +22,8 @@ class Department(models.Model):
     class Meta:
         db_table = "app_department"
 
+        
+# model for adddoctor page
 class AddDoctor(models.Model):
     name= models.CharField(max_length=100)
     specialization = models.CharField(max_length=200,null=True)
@@ -97,12 +99,10 @@ class Footer(models.Model):
     class Meta:
         db_table = "app_footer"
     
-
+# model for drug page
 class Drug(models.Model):
     name = models.CharField(max_length=299)
-    
     specification =  models.TextField()
-   
     cost = models.CharField(max_length=100)
     availability = models.CharField(max_length=100)
 
@@ -113,7 +113,6 @@ class Drug(models.Model):
 
 
 # Patient model
-
 class Patient(models.Model):
     patient_name = models.CharField(max_length=100)
     patient_contact = models.CharField(max_length=100)
@@ -133,6 +132,8 @@ class Patient(models.Model):
     class Meta:
         db_table = "app_patient"
 
+
+# model for pharmacy
 class Pharmacy(models.Model):
     generic_name= models.CharField(max_length=100)
     medicine_name= models.CharField(max_length=100)
@@ -143,6 +144,8 @@ class Pharmacy(models.Model):
     class Meta:
         db_table = "app_pharmacy"
 
+
+# model for staff page
 class Staff(models.Model):
     name = models.CharField(max_length=100)
     address=models.CharField(max_length=100)

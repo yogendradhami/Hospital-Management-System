@@ -12,12 +12,17 @@ from .models import Profile
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse_lazy
-from .form import PasswordChangingForm
+from .forms import PasswordChangingForm
 
 
 # Create your views here.
+
+# dashboard page
+
 def Dashboard(request):
     return render(request,'authentication/dashboard.html')
+
+# class view  for logout
 
 class LogoutPage(View):
     def get(self, request):
@@ -25,6 +30,9 @@ class LogoutPage(View):
         messages.success(request, "You're Logged Out !!")
         return redirect('user_login')
     
+    
+    # class view for login
+
 class LoginPage(View):
     def get(self, request):
         return render(request, 'authentication/login.html')
@@ -43,6 +51,9 @@ class LoginPage(View):
         else:
             messages.error(request, 'Invalid username or password')
             return redirect('user_login')
+
+
+# class view for register page
 
 class RegisterPage(View):
     def get(self,  request):
@@ -131,7 +142,8 @@ class RegisterPage(View):
 #     return render(request, 'authentication/forgot_password.html')
 
 
-# change password
+# class view for change password
+
 class PasswordsChangeView(PasswordChangeView):
     form_class  = PasswordChangingForm
     # from_class= PasswordChangeForm

@@ -8,7 +8,6 @@ from.models import AddMedicine, AddDoctor, BookAppointment, Department, Doctor,C
 #     list_display= ('full_name','contact','email')
 
 
-
 admin.site.register(AddMedicine)
 admin.site.register(AddDoctor)
 admin.site.register(BookAppointment)

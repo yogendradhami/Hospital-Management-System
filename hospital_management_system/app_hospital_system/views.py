@@ -1,19 +1,17 @@
 from django.shortcuts import render,redirect, HttpResponse
 # from django.contrib.auth.models import User
 from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy,Staff
-
 from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm,staffCreateForm
-
 from django.contrib import messages
-# import datetime
+import datetime
 
 from django.views import View
 # from django.views.generic.edit import FormView
 
-
 # this is for search
 from app_hospital_system.models import Doctor, Department, AddDoctor,BookAppointment, Contactus,Footer,Drug,Patient,Pharmacy
 
+# for authentication 
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -31,17 +29,21 @@ def Home(request):
 #     return render(request, 'logintemp.html')
 
 
+# this funtions shows the department page
+
 @login_required(login_url= 'user_login')
 def Department_Index(request):
     return render(request, 'department/department_index.html')
 
 
+# This is for the BookAppointment page
 @login_required(login_url= 'user_login')
 def Appointment_Index(request):
     posts=AddDoctor.objects.all()
     context={'posts':posts}
     return render(request, 'book_appointment/appointment_index.html',context)
 
+# this is to add the doctor in appointment  page
 @login_required(login_url= 'user_login')
 def Add_Doctor(request):
     data= AddDoctor()
@@ -63,6 +65,7 @@ def Add_Doctor(request):
 
     return render(request,'book_appointment/add_doctor.html',context)
 
+# this is for booking the appointment
 @login_required(login_url= 'user_login')
 def Book_Appointment(request):
 
@@ -92,7 +95,7 @@ def Book_Appointment(request):
     
     return render(request, 'book_appointment/book_appointment.html',context)
 
-
+# this displays the contactus page
 @login_required(login_url= 'user_login')
 def Contact_Us(request):
     context= {
@@ -114,6 +117,8 @@ def Contact_Us(request):
         return redirect('contact-us')
     return render(request, 'book_appointment/contactus.html', context)
 
+
+# this class for the footer page
 class Footer_Page(View):
     def get(self,request):
         return render(request, 'component/footer.html')
@@ -130,7 +135,8 @@ class Footer_Page(View):
             messages.success(request, "You're suscribed")
             return redirect('footer')
         
-# functions for staff
+
+# functions for staff stats here
 @login_required(login_url= 'user_login')
 def Staff_Index(request):
     data = Staff.objects.all()
@@ -202,7 +208,10 @@ def Staff_Delete(request,id):
     messages.success(request,'Staff Details deleted successfully!!')
     return redirect('staff-index')
 
-# function for   Drug
+# function for staff ends here
+
+
+# function for  Drug starts here
 
 @login_required(login_url= 'user_login')
 def Drug_Index(request):
@@ -231,7 +240,9 @@ def Drug_Add(request):
         return redirect('drug-index')
     return render(request, 'drug/add_drug.html',context)
 
+# function for drug ends here
 
+# funtion for patient page starts here 
 @login_required(login_url= 'user_login')
 def Patient_Index(request):
     patient_list = Patient.objects.all()
@@ -308,6 +319,9 @@ def Patient_update(request):
         messages.success(request, "Patient Edited Successfully")
         return redirect('patient-index')
     
+# funtion for patients ends here
+
+# funtion for pharmacy starts here
 
 @login_required(login_url= 'user_login')
 def Index_pharmacy(request):
@@ -334,12 +348,15 @@ def Pharmacy_delete(request,id):
     messages.success(request,'Medicine Detail deleted successfully!!')
     return redirect('pharmacy-index')
 
+# funtion for pharmcy ends here
 
+# this shows the index service functoin
 @login_required(login_url= 'user_login')
 def Index_Service(request):
     return render(request, 'department/services/index_service.html')
 
 
+# this is for showing doctor index
 @login_required(login_url= 'user_login')
 def Doctor_index(request):
    
@@ -349,6 +366,8 @@ def Doctor_index(request):
 
     return render(request, 'staff/doctor/index_doctor.html',context)
 
+
+# this function for search 
 @login_required(login_url= 'user_login')
 def Search(request):
     query = request.GET['query']
