@@ -36,7 +36,7 @@ def Department_Index(request):
     return render(request, 'department/department_index.html')
 
 
-# This is for the BookAppointment page
+# This is for the BookAppointment index page
 @login_required(login_url= 'user_login')
 def Appointment_Index(request):
     posts=AddDoctor.objects.all()
@@ -49,6 +49,12 @@ def Add_Doctor(request):
     data= AddDoctor()
     department=Department.objects.all()
     doc_create_form =  AddDoctorCreateForm()
+
+    # method two with FormCLass object
+    # doc_data=AddDoctorCreateForm(request.POST,request.FILES)
+    # if doc_data.is_valid():
+    #     doc_data.save()
+    
     context={"form": doc_create_form, "data":data, "department": department}
 
     if request.method == "POST":
@@ -57,7 +63,7 @@ def Add_Doctor(request):
         doc.name= request.POST.get('name')
         doc.specialization= request.POST.get('specialization')
         doc.department = department
-        doc.image= request.POST.get('image')
+        doc.image= request.FILES.get('image')
         doc.save()
 
         messages.success(request, 'Docotor added successfully')
@@ -77,8 +83,8 @@ def Book_Appointment(request):
 
     if request.method=='POST':
         book = BookAppointment()
-        department=  Department.objects.get(request.POST.get('department'))
-        select_doctor=  AddDoctor.objects.get(request.POST.get('select_doctor'))
+        department=  Department.objects.get(id=request.POST.get('department'))
+        select_doctor=  AddDoctor.objects.get(id=request.POST.get('select_doctor'))
 
         book.full_name = request.POST.get('full_name')
         book.email=request.POST.get('email')
@@ -160,7 +166,7 @@ def Staff_Add(request):
         stf.designation = request.POST.get('designation')
         stf.duty_time = request.POST.get('duty_time')
         stf.duty_ward = request.POST.get('duty_ward')
-        stf.image=request.POST.get('image')
+        stf.image=request.FILES.get('image')
         stf.save()
 
         messages.success(request, 'Staff added successfully in table')

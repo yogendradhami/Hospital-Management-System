@@ -87,7 +87,7 @@
             <td>{{val.designation}}</td>
             <td>{{val.duty_time}}</td>
             <td>{{val.duty_ward}}</td>
-            <td>{{val.image}}</td>
+            <td><img src="{% static val.image.url %}"></td>
 
             <td><a href="{% url 'staff-edit' val.id %}"><i class="fa-solid fa-pencil"></i></a></td>
             <td><a href="{% url 'staff-view' val.id %}"><i class="fa-solid fa-eye"></i></a></td>

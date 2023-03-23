@@ -9,7 +9,7 @@ Add {% endblock %} {% block custom_css %}
   <!-- <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4"> -->
-      <form action="{% url 'doc-add' %}" method="post">
+      <form action="{% url 'doc-add' %}"  method="post" enctype="multipart/form-data">
         {% csrf_token %} 
 
         <section class="h-100 bg-dark">
@@ -78,7 +78,7 @@ Add {% endblock %} {% block custom_css %}
                           <input
                             type="file"
                             id="form3Example90"
-                            class="form-control form-control-lg" name="image" value="{{data.image}}"
+                            class="post-form form-control-lg" name="image" value="{{data.image}}"
                           />
                           <label class="form-label" for="form3Example90"
                             >Image</label
