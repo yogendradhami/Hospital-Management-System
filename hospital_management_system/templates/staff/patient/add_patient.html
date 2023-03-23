@@ -23,8 +23,9 @@ Patient {% endblock %} {% block custom_css %} {% endblock %} {% block content %}
   <div class="row">
     <form action="{% url 'patient-add' %}" method="post">
       {% csrf_token %}
-{{form.as_p}}
-      <!-- <section class="h-100 bg-dark">
+{% comment %} {{form.as_p}} {% endcomment %}
+
+      <section class="h-100 bg-dark">
         <div class="container py-5 h-100">
           <div
             class="row d-flex justify-content-center align-items-center h-100"
@@ -199,7 +200,7 @@ Patient {% endblock %} {% block custom_css %} {% endblock %} {% block content %}
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
    
    <input type="submit" value="Submit">
     </form>

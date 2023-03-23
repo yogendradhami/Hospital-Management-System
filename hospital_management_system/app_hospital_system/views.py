@@ -36,12 +36,7 @@ def Department_Index(request):
     return render(request, 'department/department_index.html')
 
 
-# This is for the BookAppointment index page
-@login_required(login_url= 'user_login')
-def Appointment_Index(request):
-    posts=AddDoctor.objects.all()
-    context={'posts':posts}
-    return render(request, 'book_appointment/appointment_index.html',context)
+
 
 # this is to add the doctor in appointment  page
 @login_required(login_url= 'user_login')
@@ -50,7 +45,7 @@ def Add_Doctor(request):
     department=Department.objects.all()
     doc_create_form =  AddDoctorCreateForm()
 
-    # method two with FormCLass object
+    # method two with FormCLass object posting of images
     # doc_data=AddDoctorCreateForm(request.POST,request.FILES)
     # if doc_data.is_valid():
     #     doc_data.save()
@@ -70,6 +65,14 @@ def Add_Doctor(request):
         return redirect('book-appointment')
 
     return render(request,'book_appointment/add_doctor.html',context)
+
+# This is for the BookAppointment index page
+@login_required(login_url= 'user_login')
+def Appointment_Index(request):
+    posts=AddDoctor.objects.all()
+    context={'posts':posts}
+    return render(request, 'book_appointment/appointment_index.html',context)
+
 
 # this is for booking the appointment
 @login_required(login_url= 'user_login')
@@ -154,7 +157,7 @@ def Staff_Index(request):
 
 @login_required(login_url= 'user_login')
 def Staff_Add(request):
-    data= staffCreateForm()
+    data= Staff()
     context= {'form':data}
 
     if request.method=='POST':
@@ -266,9 +269,10 @@ def Patient_view(request,id):
 
 @login_required(login_url= 'user_login')
 def Patient_Add(request):
-    patinet_create_form = patientCreateForm()
-    # data = Patient()
-    context= {"form":patinet_create_form}
+    # patinet_create_form = patientCreateForm()
+    data = Patient()
+    # context= {"form":patinet_create_form}
+    context={"data":data}
 
     if request.method == "POST":
         pnt=Patient()

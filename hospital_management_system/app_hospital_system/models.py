@@ -118,8 +118,8 @@ class Patient(models.Model):
     patient_contact = models.CharField(max_length=100)
     patient_address = models.CharField(max_length=100)
     patients_doctor = models.CharField(max_length=100)
-    patient_admit_date = models.DateField()
-    patient_release_date= models.DateField()
+    patient_admit_date = models.DateField(null=True)
+    patient_release_date= models.DateField(null=True)
     patient_days_spent= models.CharField(max_length=199)
 
     patient_age = models.CharField(max_length=100)
@@ -150,12 +150,12 @@ class Staff(models.Model):
     name = models.CharField(max_length=100)
     address=models.CharField(max_length=100)
     contact=models.CharField(max_length=100)
-    gender=models.CharField(max_length=100)
+    gender=models.CharField(max_length=100, null=True)
     designation =models.CharField(max_length=100)
     duty_time=models.CharField(max_length=100)
    
     duty_ward=models.CharField(max_length=100)
-    image=models.ImageField(upload_to='static/img/staff')
+    image=models.ImageField(upload_to='static/img/staff',null=True)
     def __str__(self):
         return self.name
     

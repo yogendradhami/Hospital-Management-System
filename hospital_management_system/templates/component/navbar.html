@@ -65,12 +65,14 @@
               Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% if not request.user.is_authenticated %}
               <li><a class="dropdown-item" href="{% url 'user_login' %}">LogIn</a></li>
               <li><a class="dropdown-item" href="{% url 'user_registration' %}">Register</a></li>
-
+              {% else %}
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
             </ul>
+            {% endif %}
           </li>
 
         </ul>

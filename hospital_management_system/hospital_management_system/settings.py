@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_hospital_system',
     'authentication',
+    'hms_api',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
