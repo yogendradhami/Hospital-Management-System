@@ -12,9 +12,25 @@
 
 
 {% block content %}
+ <form class="d-flex mt-5" method="get" >
+          
+    <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+          <div class="searchbar">
+              <input class="search_input" type="text" name="query" id="query"  placeholder="Search...">
 
+              <input class="search_input" type="submit" value="search">
+
+              
+              {% comment %} <button type="submit" class="search_icon" ><i class="fas fa-search"></i></button> {% endcomment %}
+              
+          </div>
+      </div>
+  </div>
+  </form>
 
 <div class="card-columns mx-3 mt-5 mb-5">
+ 
   {% for post in post %}
     <div class="card">
       
@@ -25,7 +41,8 @@
         <p class="card-text"><small class="text-muted">{{post.last_updated_time}}</small></p>
       </div>
     </div>
-    
+    {% empty%}
+    No record found
 {% endfor %}
   </div>
   <nav aria-label="Page navigation example">
@@ -40,6 +57,7 @@
       {% endif %}
       {% for n in totalPageList %}
       <li class="page-item"><a class="page-link" href="/service-index/?page={{n}}">{{n}}</a></li>
+  
       {% endfor %}
       {%if post.has_next%}
       

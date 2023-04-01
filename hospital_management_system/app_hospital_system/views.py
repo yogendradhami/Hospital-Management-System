@@ -367,12 +367,24 @@ def Pharmacy_delete(request,id):
 @login_required(login_url= 'user_login')
 def Index_Service(request):
     ServiceData = Services.objects.all()
-    
+
+    # logic for search
+    if request.method == 'GET':
+        st=request.GET.get('query')
+        if st!=None:
+            ServiceData=Services.objects.filter(title__icontains=st)
+
+    # this code for pagination
     paginator= Paginator(ServiceData,2)
     page_number = request.GET.get('page')
     ServiceDataFinal= paginator.get_page(page_number)
     totalpage=ServiceDataFinal.paginator.num_pages
+
+    
+
+
     data = {
+        
         "post":ServiceDataFinal,
         "lastpage": totalpage,
         "totalPageList":[n+1 for n in range(totalpage)]
