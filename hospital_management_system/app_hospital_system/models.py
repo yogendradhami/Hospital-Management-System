@@ -161,3 +161,17 @@ class Staff(models.Model):
     
     class Meta:
         db_table = "app_staff"
+
+
+# model for service page
+class Services(models.Model):
+    image = models.ImageField(upload_to='static/image/service',null=True)
+    title= models.CharField(max_length=100)
+    desc=models.TextField()
+    last_updated_time= models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        db_table = "app_service"

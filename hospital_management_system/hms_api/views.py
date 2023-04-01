@@ -87,7 +87,7 @@ class BookappointmentApiIdView(APIView):
         instance= self.get_object(id=id)
 
         if not instance:
-            return Response({"msg":"Not Found"}, statys=status.HTTP_404_NOT_FOUND)
+            return Response({"msg":"Not Found"}, status=status.HTTP_404_NOT_FOUND)
         
         instance.delete()
         return Response({"msg":"Deleted succesfully"}, status=status.HTTP_200_OK)

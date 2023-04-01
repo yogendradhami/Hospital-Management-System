@@ -15,55 +15,41 @@
 
 
 <div class="card-columns mx-3 mt-5 mb-5">
+  {% for post in post %}
     <div class="card">
-      <img src="{% static 'img/gallery/gallery-3.jpg' %}" class="card-img-top" alt="...">
+      
+      <img src="{{post.image.url}}" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.desc}}</p>
+        <p class="card-text"><small class="text-muted">{{post.last_updated_time}}</small></p>
       </div>
     </div>
-    <div class="card">
-      <img src="{% static 'img/gallery/gallery-1.jpg' %}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="{% static 'img/gallery/gallery-2.jpg' %}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-
-    <div class="card">
-        <img src="{% static 'img/gallery/gallery-3.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="{% static 'img/gallery/gallery-1.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="{% static 'img/gallery/gallery-2.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
+    
+{% endfor %}
   </div>
-
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% if post.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="/service-index/?page=1" tabindex="-1" aria-disabled="true">First</a>
+      </li>
+      <li class="page-item ">
+        <a class="page-link" href="/service-index/?page={{post.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+      {% endif %}
+      {% for n in totalPageList %}
+      <li class="page-item"><a class="page-link" href="/service-index/?page={{n}}">{{n}}</a></li>
+      {% endfor %}
+      {%if post.has_next%}
+      
+      <li class="page-item">
+        <a class="page-link" href="/service-index/?page={{post.next_page_number}}">Next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/service-index/?page={{lastpage}}">Last</a>
+      </li>
+      {%endif%}
+    </ul>
+  </nav>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy,Staff
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy,Staff,Services
 from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm,staffCreateForm
 from django.contrib import messages
 import datetime
@@ -13,6 +13,9 @@ from app_hospital_system.models import Doctor, Department, AddDoctor,BookAppoint
 
 # for authentication 
 from django.contrib.auth.decorators import login_required
+
+# paginator
+from django.core.paginator import Paginator
 
 # Create your views here.
 @login_required(login_url= 'user_login')
@@ -363,7 +366,20 @@ def Pharmacy_delete(request,id):
 # this shows the index service functoin
 @login_required(login_url= 'user_login')
 def Index_Service(request):
-    return render(request, 'department/services/index_service.html')
+    ServiceData = Services.objects.all()
+    
+    paginator= Paginator(ServiceData,2)
+    page_number = request.GET.get('page')
+    ServiceDataFinal= paginator.get_page(page_number)
+    totalpage=ServiceDataFinal.paginator.num_pages
+    data = {
+        "post":ServiceDataFinal,
+        "lastpage": totalpage,
+        "totalPageList":[n+1 for n in range(totalpage)]
+    }
+
+    return render(request, 'department/services/index_service.html',data)
+
 
 
 # this is for showing doctor index
