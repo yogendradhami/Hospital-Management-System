@@ -21,11 +21,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app_hospital_system.urls')),
+    path('authentication/',include('authentication.urls')),
 
-    # url for api rest framework
+    # urls for api
     path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/hms/',include('hms_api.urls')),
+    path('api/v1/hms/', include('hms_api.urls')),
 
     
-    path('authentication/',include('authentication.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
