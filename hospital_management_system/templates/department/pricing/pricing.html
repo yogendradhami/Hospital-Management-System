@@ -1,0 +1,71 @@
+{% extends 'layouts/main.html '%}
+
+{% block title %}
+    Pricing
+
+{% endblock %}
+
+{% block content %}
+    <h1> This is Sign up form for pricing section </h1>
+
+    <body style=" background-color: rgb(244, 158, 158);">
+        <div class="container mt-5">
+            <div class="d-flex-row justify-content-center">
+    
+                <!-- messeage section -->
+                {% include "partials/_message.html" %}
+    
+                <div class="card p-4">
+                    <h3>Create your account</h3>
+    
+                    <form action="{% url 'pricing' %}" method="post">
+                        {% csrf_token %}
+    
+                        <div class="form-group mb-3">
+                            <label for="">Name</label>
+                            <input type="text" class="form-control" name="name">
+                        </div>
+    
+                        <div class="form-group mb-3">
+                            <label for="">Email</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+    
+                        <div class="form-group mb-3">
+                            <label for="">Address</label>
+                            <input type="text" class="form-control" name="address">
+    
+                        </div>
+    
+                        <div class="form-group mb-3">
+                            <label for="">Contact</label>
+                            <input type="Number" class="form-control" name="contact">
+    
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="">Age</label>
+                            <input type="Number" class="form-control" name="age">
+    
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="">Medical History</label>
+                            <input type="text" class="form-control" name="previous_medical_history">
+    
+                        </div>
+                        <input type="submit" value="CREATE" class="btn btn-secondary col-12">
+                    </form>
+                    <h5 class="mt-3">already registered ? <a href="#">Click Here</a></h5>
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+    
+    </body>
+
+
+
+{% endblock %}

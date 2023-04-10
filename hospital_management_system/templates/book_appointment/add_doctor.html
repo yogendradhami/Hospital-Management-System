@@ -1,7 +1,17 @@
-{% extends 'layouts/main.html' %} {% load static %} {% block title %} Doctor -
-Add {% endblock %} {% block custom_css %}
-<link rel="stylesheet" href="{% static '' %}" />
-{% endblock %} {% block content %}
+{% extends 'layouts/main.html' %} 
+
+{% load static %} 
+
+{% block title %} 
+Doctor - Add 
+
+{% endblock %} 
+
+{% block custom_css %}
+  {% comment %} <link rel="stylesheet" href="{% static '' %}" /> {% endcomment %}
+{% endblock %} 
+
+{% block content %}
 <div class="container mt-5">
   <h2>This is doctor add page list</h2>
   <a href="{% url 'book-appointment' %}" class="btn btn-primary">BACK</a>
@@ -113,3 +123,4 @@ Add {% endblock %} {% block custom_css %}
   </div>
 </div> -->
 {% endblock %}
+<br>

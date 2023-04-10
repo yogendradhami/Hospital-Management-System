@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, HttpResponse
 # from django.contrib.auth.models import User
-from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy,Staff,Services
-from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm,staffCreateForm
+from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Contactus,Footer,Drug,Patient, Pharmacy,Staff,Services,Price
+from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm,staffCreateForm, PriceCreateForm
 from django.contrib import messages
 import datetime
 
@@ -375,7 +375,7 @@ def Index_Service(request):
             ServiceData=Services.objects.filter(title__icontains=st)
 
     # this code for pagination
-    paginator= Paginator(ServiceData,2)
+    paginator= Paginator(ServiceData,3)
     page_number = request.GET.get('page')
     ServiceDataFinal= paginator.get_page(page_number)
     totalpage=ServiceDataFinal.paginator.num_pages
@@ -449,3 +449,25 @@ def Search(request):
                'query':query
             }
     return render(request, 'component/search.html',params)
+
+
+
+# views for pricing
+
+def Pricing(request):
+    # data= PriceCreateForm()
+    # context=  {"data":data}
+    if request.method == 'POST':
+        pr=Price()
+        pr.name = request.POST.get('name')
+        pr.email= request.POST.get('email')
+        pr.address= request.POST.get('address')
+        pr.contact = request.POST.get('contact')
+        pr.age = request.POST.get('age')
+        pr.previous_medical_history= request.POST.get('previuos_medical_history')
+        pr.save()
+
+        messages.success(request, "Your Reqyest Sent Successfully.")
+        return  redirect('pricing')
+
+    return render(request, 'department/pricing/pricing.html')

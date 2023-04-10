@@ -102,6 +102,7 @@ class Footer(models.Model):
 # model for drug page
 class Drug(models.Model):
     name = models.CharField(max_length=299)
+    tablet=models.CharField(max_length=100)
     specification =  models.TextField()
     cost = models.CharField(max_length=100)
     availability = models.CharField(max_length=100)
@@ -175,3 +176,19 @@ class Services(models.Model):
 
     class Meta:
         db_table = "app_service"
+
+# model for pricing page
+
+class Price(models.Model):
+    name = models.CharField(max_length=100)
+    email=models.EmailField()
+    address =models.CharField(max_length=199)
+    contact= models.CharField(max_length=199)
+    age=models.CharField(max_length=50)
+    previous_medical_history=models.CharField(max_length=199)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'app_pricing'

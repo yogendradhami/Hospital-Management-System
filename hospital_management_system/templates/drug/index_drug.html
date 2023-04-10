@@ -73,14 +73,10 @@
         <tr class="header">
           <th scope="col" style="text-align: center">S.N</th>
           <th scope="col" style="text-align: center">Details</th>
-          <th scope="col" style="text-align: center">Supplier</th>
-          <th scope="col" style="text-align: center">Total Qty</th>
-          <th scope="col" style="text-align: center">Unit Price</th>
-          <th scope="col" style="text-align: center">Total Amount</th>
-          <th scope="col" style="text-align: center">Selling Price</th>
-          <th scope="col" style="text-align: center">Paid</th>
-          <th scope="col" style="text-align: center">Due</th>
-          <th scope="col" style="text-align: center">Order</th>
+          
+          <th scope="col" style="text-align: center">Specification</th>
+          <th scope="col" style="text-align: center">Price</th>
+          <th scope="col" style="text-align: center">Availability</th>
           <th colspan="3" style="text-align: center">Action</th>
         </tr>
       </thead>
@@ -100,10 +96,9 @@
     
           <td style="text-align: center">{{val.specification}}.</td>
           <td style="text-align: center">{{val.cost}}</td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
+          {% comment %} <td style="text-align: center"></td>
+          <td style="text-align: center"></td> {% endcomment %}
+       
           <td style="text-align: center">{{val.availability}}</td>
           <td style="text-align: center"></td>
           <td style="text-align: center">
