@@ -408,6 +408,7 @@ def Doctor_index(request):
 # this function for search 
 @login_required(login_url= 'user_login')
 def Search(request):
+
     query = request.GET['query']
     if len(query)>80:
         allPosts= [] # get.objects.none()
@@ -417,8 +418,7 @@ def Search(request):
         allPosts= allPostsTitle.union(allPostsDoctorName)
 
         allPostsDepName = Department.objects.filter(department_name__icontains=query)
-        allPostsDepSname = Department.objects.filter(department_name__icontains=query)
-        allPosts= allPostsDepName.union(allPostsDepSname)
+        allPosts= allPostsDepName
 
         allPostsPhar = Pharmacy.objects.filter(generic_name__icontains=query)
         allPostsPharM = Pharmacy.objects.filter(medicine_name__icontains=query)
