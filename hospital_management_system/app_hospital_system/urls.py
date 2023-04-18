@@ -59,4 +59,7 @@ urlpatterns = [
     # this is url for search
     path('search/', views.Search, name='search'),
 
+    # urls for contact and requests
+    path('contactrequest/', views.ContactsReqeust, name='contactrequest'),
+
 ]

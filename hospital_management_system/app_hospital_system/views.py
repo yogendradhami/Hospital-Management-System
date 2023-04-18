@@ -4,6 +4,7 @@ from .models import AddMedicine,AddDoctor,Doctor,Department,BookAppointment, Con
 from .forms import  AddDoctorCreateForm,BookAppointmentCreateForm,DrugCreateForm, patientCreateForm,staffCreateForm, PriceCreateForm
 from django.contrib import messages
 import datetime
+from django.db.models import Q # Required
 
 from django.views import View
 # from django.views.generic.edit import FormView
@@ -408,7 +409,6 @@ def Doctor_index(request):
 # this function for search 
 @login_required(login_url= 'user_login')
 def Search(request):
-
     query = request.GET['query']
     if len(query)>80:
         allPosts= [] # get.objects.none()
@@ -471,3 +471,18 @@ def Pricing(request):
         return  redirect('pricing')
 
     return render(request, 'department/pricing/pricing.html')
+
+# views for contact and request
+
+def ContactsReqeust(request):
+        customer= Contactus.objects.all()
+        total= Contactus.objects.all().count()
+        pending= Contactus.objects.filter(status='Pending')
+        context={
+            'customer':customer,
+            'total':total,
+            'pending':pending
+        }
+
+        return render(request, 'staff/contact/contact & request.html',context)
+
